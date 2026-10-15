@@ -38,15 +38,12 @@ export default async function Home() {
   return (
     <div className="min-h-screen">
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 glass border-b border-scripture-border/50">
-        <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+      <header className="fixed top-0 left-0 right-0 z-50 glass border-b border-scripture-border">
+        <div className="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[var(--gradient-start)] to-[var(--gradient-end)] flex items-center justify-center">
-              <span className="text-white text-sm font-bold">S</span>
-            </div>
-            <span className="text-lg font-semibold">Scripture Deep</span>
+            <span className="text-xl font-serif font-semibold tracking-tight">Scripture Deep</span>
           </Link>
-          <nav className="flex items-center gap-6">
+          <nav className="flex items-center gap-5">
             {user ? (
               <>
                 <span className="text-sm text-muted-foreground hidden sm:inline">
@@ -55,27 +52,27 @@ export default async function Home() {
                 {isTeacher && (
                   <Link
                     href="/dashboard"
-                    className="text-sm text-muted-foreground hover:text-foreground transition"
+                    className="text-sm text-muted-foreground hover:text-accent transition"
                   >
                     Dashboard
                   </Link>
                 )}
                 <Link
                   href="/notes"
-                  className="text-sm text-muted-foreground hover:text-foreground transition"
+                  className="text-sm text-muted-foreground hover:text-accent transition"
                 >
                   Notes
                 </Link>
                 <Link
                   href="/settings"
-                  className="text-sm text-muted-foreground hover:text-foreground transition"
+                  className="text-sm text-muted-foreground hover:text-accent transition"
                 >
                   Settings
                 </Link>
                 <form action="/signout" method="POST">
                   <button
                     type="submit"
-                    className="text-sm text-muted-foreground hover:text-foreground transition"
+                    className="text-sm text-muted-foreground hover:text-accent transition"
                   >
                     Sign out
                   </button>
@@ -92,27 +89,25 @@ export default async function Home() {
 
       {/* Hero Section */}
       <section className="hero-section pt-32 pb-20 px-6">
-        <div className="absolute inset-0 grid-pattern pointer-events-none" />
-        <div className="max-w-4xl mx-auto text-center relative">
-          <div className="inline-flex items-center gap-2 badge-accent mb-6">
-            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-            Biblical Study Platform
-          </div>
-          <h1 className="text-5xl sm:text-6xl font-bold mb-6 tracking-tight">
-            Study the Word,{' '}
-            <span className="gradient-text">Deeply</span>
+        <div className="pattern-overlay" />
+        <div className="max-w-3xl mx-auto text-center relative">
+          <p className="text-sm uppercase tracking-widest text-accent font-medium mb-4">
+            Topical Bible Studies
+          </p>
+          <h1 className="text-4xl sm:text-5xl font-serif font-semibold mb-6 tracking-tight leading-tight">
+            Study the Word, Deeply
           </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-10">
+          <p className="text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed mb-10">
             Topical Bible studies with every scripture reference linked to the original
-            Hebrew and Greek. Tap any verse to read it, then dive deeper with Blue Letter Bible.
+            Hebrew and Greek. Tap any verse to read it in full.
           </p>
           {!user && (
             <div className="flex items-center justify-center gap-4">
-              <Link href="/signin" className="btn-accent px-8 py-3 text-base">
+              <Link href="/signin" className="btn-accent px-8 py-3">
                 Get Started
               </Link>
-              <a href="#studies" className="btn-premium px-8 py-3 text-base">
-                <span>Browse Studies</span>
+              <a href="#studies" className="btn-secondary px-8 py-3">
+                Browse Studies
               </a>
             </div>
           )}
@@ -120,15 +115,15 @@ export default async function Home() {
       </section>
 
       {/* Studies Section */}
-      <main id="studies" className="max-w-5xl mx-auto px-6 pb-20">
+      <main id="studies" className="max-w-4xl mx-auto px-6 pb-20">
         {/* Show notification banner for logged-in users */}
         {user && <NotificationBanner />}
 
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h2 className="text-2xl font-bold">Published Studies</h2>
+            <h2 className="text-2xl font-serif font-semibold">Published Studies</h2>
             <p className="text-muted-foreground text-sm mt-1">
-              Explore in-depth topical studies with linked scripture
+              In-depth topical studies with linked scripture
             </p>
           </div>
           {isTeacher && (
@@ -142,19 +137,42 @@ export default async function Home() {
         </div>
 
         {studies && studies.length > 0 ? (
-          <div className="grid gap-5 sm:grid-cols-2">
+          <div className="space-y-4">
             {studies.map((study) => (
               <Link
                 key={study.id}
                 href={`/study/${study.slug}`}
-                className="premium-card p-6 group"
+                className="premium-card p-6 block group"
               >
-                <div className="flex items-start justify-between mb-3">
-                  <h3 className="text-xl font-semibold group-hover:text-accent transition">
-                    {study.title}
-                  </h3>
+                <div className="flex items-start justify-between">
+                  <div className="flex-1">
+                    <h3 className="text-xl font-serif font-semibold group-hover:text-accent transition">
+                      {study.title}
+                    </h3>
+                    {study.subtitle && (
+                      <p className="text-muted-foreground mt-1">
+                        {study.subtitle}
+                      </p>
+                    )}
+                    <div className="flex items-center gap-3 mt-3">
+                      {study.key_verse_ref && (
+                        <span className="text-sm text-accent font-medium">
+                          {study.key_verse_ref}
+                        </span>
+                      )}
+                      {study.published_at && (
+                        <span className="text-sm text-muted-foreground">
+                          {new Date(study.published_at).toLocaleDateString('en-US', {
+                            month: 'long',
+                            day: 'numeric',
+                            year: 'numeric',
+                          })}
+                        </span>
+                      )}
+                    </div>
+                  </div>
                   <svg
-                    className="w-5 h-5 text-muted-foreground group-hover:text-accent group-hover:translate-x-1 transition-all"
+                    className="w-5 h-5 text-muted-foreground group-hover:text-accent group-hover:translate-x-1 transition-all mt-1"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -162,37 +180,11 @@ export default async function Home() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
                 </div>
-                {study.subtitle && (
-                  <p className="text-muted-foreground text-sm mb-3 line-clamp-2">
-                    {study.subtitle}
-                  </p>
-                )}
-                <div className="flex items-center gap-3 mt-auto">
-                  {study.key_verse_ref && (
-                    <span className="badge">
-                      {study.key_verse_ref}
-                    </span>
-                  )}
-                  {study.published_at && (
-                    <span className="text-xs text-muted-foreground">
-                      {new Date(study.published_at).toLocaleDateString('en-US', {
-                        month: 'short',
-                        day: 'numeric',
-                        year: 'numeric',
-                      })}
-                    </span>
-                  )}
-                </div>
               </Link>
             ))}
           </div>
         ) : (
-          <div className="text-center py-20 border border-dashed border-scripture-border rounded-2xl">
-            <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-muted flex items-center justify-center">
-              <svg className="w-8 h-8 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-              </svg>
-            </div>
+          <div className="text-center py-16 border border-dashed border-scripture-border rounded-xl">
             <p className="text-muted-foreground mb-4">No studies published yet.</p>
             {isTeacher && (
               <Link
@@ -207,38 +199,26 @@ export default async function Home() {
       </main>
 
       {/* Features Section */}
-      <section className="border-t border-scripture-border py-20 px-6">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid sm:grid-cols-3 gap-8">
+      <section className="border-t border-scripture-border py-16 px-6 bg-muted/30">
+        <div className="max-w-4xl mx-auto">
+          <div className="grid sm:grid-cols-3 gap-10">
             <div className="text-center">
-              <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-gradient-to-br from-[var(--gradient-start)]/20 to-[var(--gradient-end)]/20 flex items-center justify-center">
-                <svg className="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-              </div>
-              <h3 className="font-semibold mb-2">Instant Verse Lookup</h3>
+              <div className="text-3xl mb-3 text-accent">&#x2727;</div>
+              <h3 className="font-serif font-semibold mb-2">Instant Verse Lookup</h3>
               <p className="text-sm text-muted-foreground">
                 Tap any scripture reference to see the full verse without leaving the page
               </p>
             </div>
             <div className="text-center">
-              <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-gradient-to-br from-[var(--gradient-start)]/20 to-[var(--gradient-end)]/20 flex items-center justify-center">
-                <svg className="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
-                </svg>
-              </div>
-              <h3 className="font-semibold mb-2">Hebrew & Greek</h3>
+              <div className="text-3xl mb-3 text-accent">&#x2628;</div>
+              <h3 className="font-serif font-semibold mb-2">Hebrew & Greek</h3>
               <p className="text-sm text-muted-foreground">
                 Every verse links to Strong&apos;s Concordance for original language study
               </p>
             </div>
             <div className="text-center">
-              <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-gradient-to-br from-[var(--gradient-start)]/20 to-[var(--gradient-end)]/20 flex items-center justify-center">
-                <svg className="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                </svg>
-              </div>
-              <h3 className="font-semibold mb-2">Personal Notes</h3>
+              <div className="text-3xl mb-3 text-accent">&#x270D;</div>
+              <h3 className="font-serif font-semibold mb-2">Personal Notes</h3>
               <p className="text-sm text-muted-foreground">
                 Take notes on each section and share them with your teacher
               </p>
@@ -249,13 +229,8 @@ export default async function Home() {
 
       {/* Footer */}
       <footer className="border-t border-scripture-border">
-        <div className="max-w-5xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <div className="w-6 h-6 rounded-md bg-gradient-to-br from-[var(--gradient-start)] to-[var(--gradient-end)] flex items-center justify-center">
-              <span className="text-white text-xs font-bold">S</span>
-            </div>
-            <span className="text-sm text-muted-foreground">Scripture Deep</span>
-          </div>
+        <div className="max-w-4xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <span className="font-serif text-muted-foreground">Scripture Deep</span>
           <p className="text-sm text-muted-foreground">
             KJV text is public domain
           </p>

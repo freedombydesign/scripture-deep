@@ -94,21 +94,18 @@ export default async function StudyPage({ params }: StudyPageProps) {
   return (
     <div className="min-h-screen">
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 glass border-b border-scripture-border/50">
+      <header className="fixed top-0 left-0 right-0 z-50 glass border-b border-scripture-border">
         <div className="max-w-3xl mx-auto px-6 py-4 flex items-center justify-between">
           <Link
             href="/"
-            className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition"
+            className="text-sm text-muted-foreground hover:text-accent transition"
           >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-            <span>Scripture Deep</span>
+            &larr; Scripture Deep
           </Link>
           {user && (
             <Link
               href="/notes"
-              className="text-sm text-muted-foreground hover:text-foreground transition"
+              className="text-sm text-muted-foreground hover:text-accent transition"
             >
               My Notes
             </Link>
@@ -117,9 +114,9 @@ export default async function StudyPage({ params }: StudyPageProps) {
       </header>
 
       {/* Study header */}
-      <div className="pt-24 pb-8 px-6 border-b border-scripture-border">
+      <div className="pt-24 pb-8 px-6 border-b border-scripture-border bg-muted/30">
         <div className="max-w-3xl mx-auto">
-          <h1 className="text-3xl sm:text-4xl font-bold mb-3 tracking-tight">
+          <h1 className="text-3xl sm:text-4xl font-serif font-semibold mb-3">
             {study.title}
           </h1>
 
@@ -129,31 +126,24 @@ export default async function StudyPage({ params }: StudyPageProps) {
 
           {study.key_verse_ref && (
             <div className="mb-4">
-              <span className="badge mr-2">Key verse</span>
+              <span className="text-sm text-muted-foreground mr-2">Key verse:</span>
               <LinkedText text={study.key_verse_ref} className="font-medium text-accent" />
             </div>
           )}
 
           {study.theme && (
-            <p className="text-lg mb-4 italic text-muted-foreground">
+            <p className="text-lg mb-4 italic text-muted-foreground font-serif">
               <LinkedText text={study.theme} />
             </p>
           )}
 
           <div className="flex items-center gap-3 text-sm text-muted-foreground">
             {author?.display_name && (
-              <span className="flex items-center gap-1.5">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                </svg>
-                {author.display_name}
-              </span>
+              <span>By {author.display_name}</span>
             )}
             {study.published_at && (
-              <span className="flex items-center gap-1.5">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
+              <span>
+                {author?.display_name && <span className="mx-2">&middot;</span>}
                 {new Date(study.published_at).toLocaleDateString('en-US', {
                   year: 'numeric',
                   month: 'long',
@@ -167,7 +157,7 @@ export default async function StudyPage({ params }: StudyPageProps) {
 
       {/* Section jump bar */}
       {sections.length > 1 && (
-        <div className="sticky top-[65px] z-40 glass border-b border-scripture-border/50">
+        <div className="sticky top-[65px] z-40 glass border-b border-scripture-border">
           <div className="max-w-3xl mx-auto px-6 py-3">
             <SectionJumpBar
               sections={sections.map((s) => ({ id: s.id, heading: s.heading }))}
@@ -205,12 +195,7 @@ export default async function StudyPage({ params }: StudyPageProps) {
       {/* Footer */}
       <footer className="border-t border-scripture-border mt-12">
         <div className="max-w-3xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <div className="w-6 h-6 rounded-md bg-gradient-to-br from-[var(--gradient-start)] to-[var(--gradient-end)] flex items-center justify-center">
-              <span className="text-white text-xs font-bold">S</span>
-            </div>
-            <span className="text-sm text-muted-foreground">Scripture Deep</span>
-          </div>
+          <span className="font-serif text-muted-foreground">Scripture Deep</span>
           <p className="text-sm text-muted-foreground">
             KJV text is public domain
           </p>
