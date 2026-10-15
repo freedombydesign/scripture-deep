@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
+import { createClient as createAdminClient } from '@supabase/supabase-js'
 import { ExportButton } from '@/components/notes/ExportButton'
 import { DeleteNoteButton } from '@/components/notes/DeleteNoteButton'
 import type { User } from '@/types/database'
@@ -91,9 +92,13 @@ export default async function NotesPage() {
       .order('updated_at', { ascending: false })
 
     if (studentNotes) {
-      // Get student names
+      // Get student names using admin client to bypass RLS
+      const adminSupabase = createAdminClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.SUPABASE_SERVICE_ROLE_KEY!
+      )
       const studentIds = [...new Set(studentNotes.map((n: { user_id: string }) => n.user_id))]
-      const { data: students } = await supabase
+      const { data: students } = await adminSupabase
         .from('users')
         .select('id, display_name, email')
         .in('id', studentIds)
