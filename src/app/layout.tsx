@@ -23,6 +23,16 @@ const crimsonText = Crimson_Text({
 export const metadata: Metadata = {
   title: "Scripture Deep",
   description: "Topical Bible studies with linked scripture and personal notes",
+  manifest: "/manifest.json",
+  themeColor: "#c9a227",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Scripture Deep",
+  },
+  other: {
+    "mobile-web-app-capable": "yes",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

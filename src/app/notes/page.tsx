@@ -2,6 +2,8 @@ import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import { ExportButton } from '@/components/notes/ExportButton'
+import { DeleteNoteButton } from '@/components/notes/DeleteNoteButton'
+import type { User } from '@/types/database'
 
 // This page uses auth which is runtime-only
 export const instant = false
@@ -19,6 +21,15 @@ export default async function NotesPage() {
   if (!user) {
     redirect('/signin')
   }
+
+  // Check if user is a teacher
+  const { data: profileData } = await supabase
+    .from('users')
+    .select('role')
+    .eq('id', user.id)
+    .single()
+  const profile = profileData as Pick<User, 'role'> | null
+  const isTeacher = profile?.role === 'teacher'
 
   // Get all notes with their section and study info
   const { data: notes } = await supabase
@@ -42,6 +53,84 @@ export default async function NotesPage() {
     `)
     .eq('user_id', user.id)
     .order('updated_at', { ascending: false })
+
+  // If teacher, also get student notes that are shared
+  let sharedStudentNotes: Array<{
+    id: string
+    body: string
+    updated_at: string
+    user_id: string
+    studentName: string
+    sectionHeading: string
+    sectionPosition: number
+    studyTitle: string
+    studySlug: string
+  }> = []
+
+  if (isTeacher) {
+    const { data: studentNotes } = await supabase
+      .from('notes')
+      .select(`
+        id,
+        body,
+        updated_at,
+        user_id,
+        sections!inner (
+          id,
+          heading,
+          position,
+          studies!inner (
+            id,
+            title,
+            slug
+          )
+        )
+      `)
+      .eq('shared_with_teacher', true)
+      .neq('user_id', user.id)
+      .order('updated_at', { ascending: false })
+
+    if (studentNotes) {
+      // Get student names
+      const studentIds = [...new Set(studentNotes.map((n: { user_id: string }) => n.user_id))]
+      const { data: students } = await supabase
+        .from('users')
+        .select('id, display_name, email')
+        .in('id', studentIds)
+
+      const studentMap = new Map(
+        (students || []).map((s: { id: string; display_name: string | null; email: string }) => [
+          s.id,
+          s.display_name || s.email.split('@')[0]
+        ])
+      )
+
+      sharedStudentNotes = studentNotes.map((note: {
+        id: string
+        body: string
+        updated_at: string
+        user_id: string
+        sections: {
+          heading: string
+          position: number
+          studies: {
+            title: string
+            slug: string
+          }
+        }
+      }) => ({
+        id: note.id,
+        body: note.body,
+        updated_at: note.updated_at,
+        user_id: note.user_id,
+        studentName: studentMap.get(note.user_id) || 'Unknown Student',
+        sectionHeading: note.sections.heading,
+        sectionPosition: note.sections.position,
+        studyTitle: note.sections.studies.title,
+        studySlug: note.sections.studies.slug,
+      }))
+    }
+  }
 
   // Group notes by study
   type NoteWithSection = {
@@ -141,9 +230,12 @@ export default async function NotesPage() {
                           <h3 className="font-medium text-primary">
                             {note.sectionPosition}. {note.sectionHeading}
                           </h3>
-                          <span className="text-xs text-muted-foreground">
-                            {new Date(note.updated_at).toLocaleDateString()}
-                          </span>
+                          <div className="flex items-center gap-3">
+                            <span className="text-xs text-muted-foreground">
+                              {new Date(note.updated_at).toLocaleDateString()}
+                            </span>
+                            <DeleteNoteButton noteId={note.id} />
+                          </div>
                         </div>
                         <p className="text-sm whitespace-pre-wrap">{note.body}</p>
                       </div>
@@ -169,6 +261,49 @@ export default async function NotesPage() {
             >
               Browse studies
             </Link>
+          </div>
+        )}
+
+        {/* Student Notes Section for Teachers */}
+        {isTeacher && sharedStudentNotes.length > 0 && (
+          <div className="mt-12">
+            <h2 className="text-2xl font-bold mb-6">Student Notes</h2>
+            <div className="space-y-4">
+              {sharedStudentNotes.map((note) => (
+                <div
+                  key={note.id}
+                  className="border border-scripture-border rounded-lg p-4"
+                >
+                  <div className="flex items-start justify-between mb-2">
+                    <div>
+                      <span className="inline-block bg-primary/10 text-primary text-xs px-2 py-0.5 rounded mb-1">
+                        {note.studentName}
+                      </span>
+                      <h3 className="font-medium">
+                        <Link
+                          href={`/study/${note.studySlug}`}
+                          className="hover:text-primary transition"
+                        >
+                          {note.studyTitle}
+                        </Link>
+                        <span className="text-muted-foreground"> - </span>
+                        {note.sectionPosition}. {note.sectionHeading}
+                      </h3>
+                    </div>
+                    <span className="text-xs text-muted-foreground">
+                      {new Date(note.updated_at).toLocaleDateString()}
+                    </span>
+                  </div>
+                  <p className="text-sm whitespace-pre-wrap mt-2">{note.body}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {isTeacher && sharedStudentNotes.length === 0 && studiesWithNotes.length > 0 && (
+          <div className="mt-12 text-center py-8 text-muted-foreground border border-dashed border-scripture-border rounded-lg">
+            <p>No students have shared notes with you yet.</p>
           </div>
         )}
       </main>
