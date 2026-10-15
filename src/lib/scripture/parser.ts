@@ -227,8 +227,8 @@ export function generateBLBUrl(ref: VerseRef): string {
   const { book, chapter, verseStart } = ref
   const verse = verseStart ?? 1
 
-  // BLB URL format: https://www.blueletterbible.org/kjv/{book}/{chapter}/{verse}/s_s
-  return `https://www.blueletterbible.org/kjv/${book.blbCode}/${chapter}/${verse}/s_s`
+  // BLB URL format: https://www.blueletterbible.org/kjv/{book}/{chapter}/{verse}/
+  return `https://www.blueletterbible.org/kjv/${book.blbCode}/${chapter}/${verse}/`
 }
 
 /**
@@ -238,10 +238,8 @@ export function generateBLBInterlinearUrl(ref: VerseRef): string {
   const { book, chapter, verseStart } = ref
   const verse = verseStart ?? 1
 
-  // BLB Interlinear URL format: https://www.blueletterbible.org/kjv/{book}/{chapter}/{verse}/t_conc_{verseId}
-  // The verse ID is a sequential number across the whole Bible
-  // For simplicity, we'll link to the tools page which has interlinear
-  return `https://www.blueletterbible.org/kjv/${book.blbCode}/${chapter}/${verse}/t_conc`
+  // BLB Interlinear URL - link to the verse with interlinear tools
+  return `https://www.blueletterbible.org/kjv/${book.blbCode}/${chapter}/${verse}/t_bibles`
 }
 
 /**
