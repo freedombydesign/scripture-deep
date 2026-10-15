@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Crimson_Text } from "next/font/google";
+import { PWAProvider } from "@/components/pwa/PWAProvider";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -41,7 +42,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${crimsonText.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-background text-foreground">{children}</body>
+      <body className="min-h-full flex flex-col bg-background text-foreground">
+        <PWAProvider>{children}</PWAProvider>
+      </body>
     </html>
   );
 }

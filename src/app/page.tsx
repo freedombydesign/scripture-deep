@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import type { User, Study } from '@/types/database'
+import { NotificationBanner } from '@/components/pwa/NotificationBanner'
 
 // This page uses auth which is runtime-only
 export const instant = false
@@ -92,6 +93,9 @@ export default async function Home() {
 
       {/* Studies list */}
       <main className="max-w-4xl mx-auto px-4 pb-12">
+        {/* Show notification banner for logged-in users */}
+        {user && <NotificationBanner />}
+
         <h3 className="text-lg font-semibold mb-6">Published Studies</h3>
 
         {studies && studies.length > 0 ? (
