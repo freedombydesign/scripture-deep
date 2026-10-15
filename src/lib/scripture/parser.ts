@@ -235,11 +235,13 @@ export function generateBLBUrl(ref: VerseRef): string {
  * Generate a Blue Letter Bible Interlinear URL for a verse reference
  */
 export function generateBLBInterlinearUrl(ref: VerseRef): string {
-  const { book, chapter, verseStart } = ref
+  const { book, chapter, verseStart, verseEnd } = ref
   const verse = verseStart ?? 1
+  const endVerse = verseEnd ?? verse
 
-  // BLB Interlinear URL - link to the verse with interlinear tools
-  return `https://www.blueletterbible.org/kjv/${book.blbCode}/${chapter}/${verse}/t_bibles`
+  // BLB Interlinear URL format: /tools/interlinear/tr/{book}/{chapter}/{verseStart}-{verseEnd}/
+  // Using TR (Textus Receptus) for NT, will work for OT Hebrew too
+  return `https://www.blueletterbible.org/tools/interlinear/tr/${book.blbCode}/${chapter}/${verse}-${endVerse}/`
 }
 
 /**
