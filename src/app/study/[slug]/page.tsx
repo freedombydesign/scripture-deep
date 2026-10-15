@@ -81,27 +81,18 @@ export default async function StudyPage({ params }: StudyPageProps) {
   // Get current user for notes
   const { data: { user } } = await supabase.auth.getUser()
   let isTeacher = false
-  let profileDebug = 'no user'
   if (user) {
-    const { data: profileData, error: profileError } = await supabase
+    const { data: profileData } = await supabase
       .from('users')
       .select('role')
       .eq('id', user.id)
       .single()
     const profile = profileData as Pick<User, 'role'> | null
     isTeacher = profile?.role === 'teacher'
-    profileDebug = profileError
-      ? `ERROR: ${profileError.message}`
-      : `role=${profile?.role}, isTeacher=${isTeacher}`
   }
 
   return (
     <div className="min-h-screen">
-      {/* Debug info - remove after testing */}
-      <div className="bg-yellow-100 p-2 text-xs text-black">
-        DEBUG: userId={user?.id || 'null'}, {profileDebug}
-      </div>
-
       {/* Header */}
       <header className="border-b border-scripture-border">
         <div className="max-w-3xl mx-auto px-4 py-4">

@@ -4,6 +4,7 @@ export {
   findScriptureReferences,
   generateBLBUrl,
   generateBLBInterlinearUrl,
+  generateBLBLexiconUrl,
   formatVerseRef,
   getVerseKey,
   type VerseRef,

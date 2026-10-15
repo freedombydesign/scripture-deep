@@ -245,6 +245,17 @@ export function generateBLBInterlinearUrl(ref: VerseRef): string {
 }
 
 /**
+ * Generate a Blue Letter Bible Lexicon/Concordance URL for a verse reference
+ */
+export function generateBLBLexiconUrl(ref: VerseRef): string {
+  const { book, chapter, verseStart } = ref
+  const verse = verseStart ?? 1
+
+  // BLB Lexicon view - shows Strong's numbers with clickable definitions
+  return `https://www.blueletterbible.org/kjv/${book.blbCode}/${chapter}/${verse}/t_conc/`
+}
+
+/**
  * Format a verse reference as a human-readable string
  */
 export function formatVerseRef(ref: VerseRef): string {
