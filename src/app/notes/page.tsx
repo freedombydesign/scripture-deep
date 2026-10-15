@@ -366,7 +366,7 @@ export default async function NotesPage({ searchParams }: NotesPageProps) {
                   </div>
                   <p className="text-sm whitespace-pre-wrap text-muted-foreground">{note.body}</p>
                   <div className="mt-4 pt-4 border-t border-scripture-border">
-                    <NoteReplyForm noteId={note.id} existingReply={note.reply} />
+                    <NoteReplyForm noteId={note.id} studentId={note.user_id} existingReply={note.reply} />
                   </div>
                 </div>
               ))}

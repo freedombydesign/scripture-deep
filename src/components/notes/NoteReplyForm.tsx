@@ -6,10 +6,11 @@ import { createClient } from '@/lib/supabase/client'
 
 interface NoteReplyFormProps {
   noteId: string
+  studentId?: string
   existingReply?: { id: string; body: string } | null
 }
 
-export function NoteReplyForm({ noteId, existingReply }: NoteReplyFormProps) {
+export function NoteReplyForm({ noteId, studentId, existingReply }: NoteReplyFormProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [body, setBody] = useState(existingReply?.body || '')
   const [saving, setSaving] = useState(false)
@@ -40,6 +41,21 @@ export function NoteReplyForm({ noteId, existingReply }: NoteReplyFormProps) {
           user_id: user.id,
           body: body.trim(),
         })
+
+      // Send push notification to student
+      if (studentId) {
+        fetch('/api/push/notify-reply', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            noteId,
+            studentId,
+            replyPreview: body.trim(),
+          }),
+        }).catch(() => {
+          // Notification failure shouldn't block the UI
+        })
+      }
     }
 
     setSaving(false)
