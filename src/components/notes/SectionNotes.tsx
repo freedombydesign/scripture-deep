@@ -62,7 +62,9 @@ export function SectionNotes({ sectionId, userId, isTeacher = false }: SectionNo
       })
 
     setSaving(false)
-    if (!error) {
+    if (error) {
+      console.error('Failed to save note:', error)
+    } else {
       setLastSaved(new Date())
     }
   }, [userId, sectionId])
@@ -120,6 +122,21 @@ export function SectionNotes({ sectionId, userId, isTeacher = false }: SectionNo
         rows={4}
         className="w-full p-3 border border-scripture-border rounded-lg bg-background resize-y focus:outline-none focus:ring-2 focus:ring-primary/50"
       />
+
+      <div className="mt-2 flex items-center gap-3">
+        <button
+          onClick={() => saveNote(note, sharedWithTeacher)}
+          disabled={saving}
+          className="text-sm bg-primary text-primary-foreground px-4 py-1.5 rounded hover:opacity-90 transition disabled:opacity-50"
+        >
+          {saving ? 'Saving...' : 'Save Note'}
+        </button>
+        {lastSaved && (
+          <span className="text-xs text-muted-foreground">
+            Last saved: {lastSaved.toLocaleTimeString()}
+          </span>
+        )}
+      </div>
 
       {!isTeacher && (
         <div className="mt-2 flex items-center gap-2">
