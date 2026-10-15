@@ -11,6 +11,9 @@ interface SectionNotesProps {
 }
 
 export function SectionNotes({ sectionId, userId, isTeacher = false }: SectionNotesProps) {
+  // Debug: log userId
+  console.log('SectionNotes userId:', userId, 'sectionId:', sectionId)
+
   const [note, setNote] = useState('')
   const [sharedWithTeacher, setSharedWithTeacher] = useState(false)
   const [saving, setSaving] = useState(false)
