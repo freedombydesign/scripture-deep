@@ -246,13 +246,14 @@ export function generateBLBInterlinearUrl(ref: VerseRef): string {
 
 /**
  * Generate a Blue Letter Bible Lexicon/Concordance URL for a verse reference
+ * Note: The regular verse page shows clickable Strong's numbers [H####] and [G####]
  */
 export function generateBLBLexiconUrl(ref: VerseRef): string {
   const { book, chapter, verseStart } = ref
   const verse = verseStart ?? 1
 
-  // BLB Lexicon view - shows Strong's numbers with clickable definitions
-  return `https://www.blueletterbible.org/kjv/${book.blbCode}/${chapter}/${verse}/t_conc/`
+  // BLB verse page shows Strong's numbers with clickable definitions
+  return `https://www.blueletterbible.org/kjv/${book.blbCode}/${chapter}/${verse}/`
 }
 
 /**

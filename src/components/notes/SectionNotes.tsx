@@ -16,6 +16,7 @@ export function SectionNotes({ sectionId, userId, isTeacher = false }: SectionNo
   const [saving, setSaving] = useState(false)
   const [lastSaved, setLastSaved] = useState<Date | null>(null)
   const [loaded, setLoaded] = useState(false)
+  const [deleting, setDeleting] = useState(false)
 
   // Load existing note
   useEffect(() => {
@@ -66,6 +67,31 @@ export function SectionNotes({ sectionId, userId, isTeacher = false }: SectionNo
       console.error('Failed to save note:', error)
     } else {
       setLastSaved(new Date())
+    }
+  }, [userId, sectionId])
+
+  // Delete note
+  const deleteNote = useCallback(async () => {
+    if (!userId) return
+
+    if (!confirm('Are you sure you want to delete this note?')) return
+
+    setDeleting(true)
+    const supabase = createClient()
+
+    const { error } = await supabase
+      .from('notes')
+      .delete()
+      .eq('user_id', userId)
+      .eq('section_id', sectionId)
+
+    setDeleting(false)
+    if (error) {
+      console.error('Failed to delete note:', error)
+    } else {
+      setNote('')
+      setSharedWithTeacher(false)
+      setLastSaved(null)
     }
   }, [userId, sectionId])
 
@@ -131,6 +157,15 @@ export function SectionNotes({ sectionId, userId, isTeacher = false }: SectionNo
         >
           {saving ? 'Saving...' : 'Save Note'}
         </button>
+        {note.trim() && (
+          <button
+            onClick={deleteNote}
+            disabled={deleting}
+            className="text-sm text-red-600 hover:text-red-700 px-2 py-1.5 rounded hover:bg-red-50 transition disabled:opacity-50"
+          >
+            {deleting ? 'Deleting...' : 'Delete'}
+          </button>
+        )}
         {lastSaved && (
           <span className="text-xs text-muted-foreground">
             Last saved: {lastSaved.toLocaleTimeString()}

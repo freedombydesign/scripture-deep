@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import { type VerseRef, generateBLBUrl, generateBLBInterlinearUrl, generateBLBLexiconUrl, formatVerseRef } from '@/lib/scripture'
+import { type VerseRef, generateBLBUrl, generateBLBInterlinearUrl, formatVerseRef } from '@/lib/scripture'
 import { fetchVersesForRef, formatVerses } from '@/lib/verses'
 
 interface ScriptureLinkProps {
@@ -19,7 +19,6 @@ export function ScriptureLink({ text, refs }: ScriptureLinkProps) {
   const primaryRef = refs[0]
   const blbUrl = generateBLBUrl(primaryRef)
   const interlinearUrl = generateBLBInterlinearUrl(primaryRef)
-  const lexiconUrl = generateBLBLexiconUrl(primaryRef)
 
   // Fetch verse text when popover opens
   useEffect(() => {
@@ -116,7 +115,7 @@ export function ScriptureLink({ text, refs }: ScriptureLinkProps) {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 px-3 py-1.5 text-sm bg-primary text-primary-foreground rounded-md hover:opacity-90 transition"
             >
-              Read in context
+              Read + Strong's
               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
               </svg>
@@ -128,17 +127,6 @@ export function ScriptureLink({ text, refs }: ScriptureLinkProps) {
               className="inline-flex items-center gap-1 px-3 py-1.5 text-sm bg-accent text-white rounded-md hover:opacity-90 transition"
             >
               Interlinear
-              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-              </svg>
-            </a>
-            <a
-              href={lexiconUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 px-3 py-1.5 text-sm bg-green-600 text-white rounded-md hover:opacity-90 transition"
-            >
-              Strong's
               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
               </svg>
