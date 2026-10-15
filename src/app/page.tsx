@@ -61,6 +61,12 @@ export default async function Home() {
                 >
                   My Notes
                 </Link>
+                <Link
+                  href="/settings"
+                  className="text-sm text-primary hover:underline"
+                >
+                  Settings
+                </Link>
                 <form action="/signout" method="POST">
                   <button
                     type="submit"
