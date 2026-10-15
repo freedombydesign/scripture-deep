@@ -82,13 +82,16 @@ export default async function StudyPage({ params }: StudyPageProps) {
   const { data: { user } } = await supabase.auth.getUser()
   let isTeacher = false
   if (user) {
-    const { data: profileData } = await supabase
+    const { data: profileData, error: profileError } = await supabase
       .from('users')
       .select('role')
       .eq('id', user.id)
       .single()
     const profile = profileData as Pick<User, 'role'> | null
     isTeacher = profile?.role === 'teacher'
+    console.log('DEBUG: user.id:', user.id, 'profile:', profile, 'error:', profileError, 'isTeacher:', isTeacher)
+  } else {
+    console.log('DEBUG: No user found')
   }
 
   return (
