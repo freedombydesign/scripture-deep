@@ -96,6 +96,11 @@ export default async function StudyPage({ params }: StudyPageProps) {
 
   return (
     <div className="min-h-screen">
+      {/* Debug info - remove after testing */}
+      <div className="bg-yellow-100 p-2 text-xs text-black">
+        DEBUG: userId={user?.id || 'null'}, isTeacher={String(isTeacher)}
+      </div>
+
       {/* Header */}
       <header className="border-b border-scripture-border">
         <div className="max-w-3xl mx-auto px-4 py-4">
