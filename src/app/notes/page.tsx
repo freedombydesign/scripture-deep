@@ -4,6 +4,7 @@ import { createClient } from '@/lib/supabase/server'
 import { createClient as createAdminClient } from '@supabase/supabase-js'
 import { ExportButton } from '@/components/notes/ExportButton'
 import { DeleteNoteButton } from '@/components/notes/DeleteNoteButton'
+import { NoteReplyForm } from '@/components/notes/NoteReplyForm'
 import type { User } from '@/types/database'
 
 // This page uses auth which is runtime-only
@@ -14,7 +15,15 @@ export const metadata = {
   description: 'Your personal notes on Bible studies',
 }
 
-export default async function NotesPage() {
+const NOTES_PER_PAGE = 10
+
+interface NotesPageProps {
+  searchParams: Promise<{ page?: string }>
+}
+
+export default async function NotesPage({ searchParams }: NotesPageProps) {
+  const params = await searchParams
+  const currentPage = Math.max(1, parseInt(params.page || '1', 10))
   const supabase = await createClient()
 
   // Check if user is logged in
@@ -55,7 +64,7 @@ export default async function NotesPage() {
     .eq('user_id', user.id)
     .order('updated_at', { ascending: false })
 
-  // If teacher, also get student notes that are shared
+  // If teacher, also get student notes that are shared (with pagination)
   let sharedStudentNotes: Array<{
     id: string
     body: string
@@ -66,9 +75,21 @@ export default async function NotesPage() {
     sectionPosition: number
     studyTitle: string
     studySlug: string
+    reply: { id: string; body: string } | null
   }> = []
+  let totalStudentNotes = 0
 
   if (isTeacher) {
+    // Get count first
+    const { count } = await supabase
+      .from('notes')
+      .select('id', { count: 'exact', head: true })
+      .eq('shared_with_teacher', true)
+      .neq('user_id', user.id)
+
+    totalStudentNotes = count || 0
+
+    const offset = (currentPage - 1) * NOTES_PER_PAGE
     const { data: studentNotes } = await supabase
       .from('notes')
       .select(`
@@ -90,8 +111,9 @@ export default async function NotesPage() {
       .eq('shared_with_teacher', true)
       .neq('user_id', user.id)
       .order('updated_at', { ascending: false })
+      .range(offset, offset + NOTES_PER_PAGE - 1)
 
-    if (studentNotes) {
+    if (studentNotes && studentNotes.length > 0) {
       // Get student names using admin client to bypass RLS
       const adminSupabase = createAdminClient(
         process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -102,6 +124,21 @@ export default async function NotesPage() {
         .from('users')
         .select('id, display_name, email')
         .in('id', studentIds)
+
+      // Get replies for these notes
+      const noteIds = studentNotes.map((n: { id: string }) => n.id)
+      const { data: replies } = await adminSupabase
+        .from('note_replies')
+        .select('id, note_id, body')
+        .in('note_id', noteIds)
+        .eq('user_id', user.id)
+
+      const replyMap = new Map(
+        (replies || []).map((r: { id: string; note_id: string; body: string }) => [
+          r.note_id,
+          { id: r.id, body: r.body }
+        ])
+      )
 
       const studentMap = new Map(
         (students || []).map((s: { id: string; display_name: string | null; email: string }) => [
@@ -133,9 +170,12 @@ export default async function NotesPage() {
         sectionPosition: note.sections.position,
         studyTitle: note.sections.studies.title,
         studySlug: note.sections.studies.slug,
+        reply: replyMap.get(note.id) || null,
       }))
     }
   }
+
+  const totalPages = Math.ceil(totalStudentNotes / NOTES_PER_PAGE)
 
   // Group notes by study
   type NoteWithSection = {
@@ -272,7 +312,10 @@ export default async function NotesPage() {
         {/* Student Notes Section for Teachers */}
         {isTeacher && sharedStudentNotes.length > 0 && (
           <div className="mt-12">
-            <h2 className="text-2xl font-bold mb-6">Student Notes</h2>
+            <h2 className="text-2xl font-bold mb-2">Student Notes</h2>
+            <p className="text-sm text-muted-foreground mb-6">
+              {totalStudentNotes} shared note{totalStudentNotes !== 1 ? 's' : ''}
+            </p>
             <div className="space-y-4">
               {sharedStudentNotes.map((note) => (
                 <div
@@ -300,9 +343,37 @@ export default async function NotesPage() {
                     </span>
                   </div>
                   <p className="text-sm whitespace-pre-wrap mt-2">{note.body}</p>
+                  <div className="mt-3 pt-3 border-t border-scripture-border">
+                    <NoteReplyForm noteId={note.id} existingReply={note.reply} />
+                  </div>
                 </div>
               ))}
             </div>
+
+            {/* Pagination */}
+            {totalPages > 1 && (
+              <div className="flex items-center justify-center gap-2 mt-6">
+                {currentPage > 1 && (
+                  <Link
+                    href={`/notes?page=${currentPage - 1}`}
+                    className="px-3 py-1 text-sm border border-scripture-border rounded hover:bg-muted transition"
+                  >
+                    Previous
+                  </Link>
+                )}
+                <span className="text-sm text-muted-foreground">
+                  Page {currentPage} of {totalPages}
+                </span>
+                {currentPage < totalPages && (
+                  <Link
+                    href={`/notes?page=${currentPage + 1}`}
+                    className="px-3 py-1 text-sm border border-scripture-border rounded hover:bg-muted transition"
+                  >
+                    Next
+                  </Link>
+                )}
+              </div>
+            )}
           </div>
         )}
 
