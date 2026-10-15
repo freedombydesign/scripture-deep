@@ -46,7 +46,7 @@ export async function POST(request: NextRequest) {
     // Get all student subscriptions (exclude teacher's own)
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { data: subscriptions } = await (adminSupabase.from('push_subscriptions') as any)
-      .select('id, user_id, endpoint, p256dh, auth')
+      .select('id, user_id, endpoint, keys')
       .neq('user_id', user.id)
 
     if (!subscriptions || subscriptions.length === 0) {
@@ -54,8 +54,9 @@ export async function POST(request: NextRequest) {
     }
 
     // Get unique user subscriptions (one per user for simplicity)
-    const userSubscriptionMap = new Map<string, typeof subscriptions[0]>()
-    for (const sub of subscriptions) {
+    type Subscription = { id: string; user_id: string; endpoint: string; keys: { p256dh: string; auth: string } }
+    const userSubscriptionMap = new Map<string, Subscription>()
+    for (const sub of subscriptions as Subscription[]) {
       if (!userSubscriptionMap.has(sub.user_id)) {
         userSubscriptionMap.set(sub.user_id, sub)
       }
@@ -83,8 +84,8 @@ export async function POST(request: NextRequest) {
           {
             endpoint: subscription.endpoint,
             keys: {
-              p256dh: subscription.p256dh,
-              auth: subscription.auth,
+              p256dh: subscription.keys.p256dh,
+              auth: subscription.keys.auth,
             },
           },
           payload

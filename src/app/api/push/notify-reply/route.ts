@@ -42,7 +42,7 @@ export async function POST(request: NextRequest) {
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { data: subscriptions } = await (adminSupabase.from('push_subscriptions') as any)
-      .select('id, endpoint, p256dh, auth')
+      .select('id, endpoint, keys')
       .eq('user_id', studentId)
       .limit(1)
 
@@ -51,7 +51,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ sent: false, reason: 'No subscription' })
     }
 
-    const subscription = subscriptions[0]
+    const subscription = subscriptions[0] as { id: string; endpoint: string; keys: { p256dh: string; auth: string } }
 
     // Truncate reply preview
     const preview = replyPreview?.length > 100
@@ -74,8 +74,8 @@ export async function POST(request: NextRequest) {
         {
           endpoint: subscription.endpoint,
           keys: {
-            p256dh: subscription.p256dh,
-            auth: subscription.auth,
+            p256dh: subscription.keys.p256dh,
+            auth: subscription.keys.auth,
           },
         },
         payload
