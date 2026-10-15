@@ -236,32 +236,44 @@ export default async function NotesPage({ searchParams }: NotesPageProps) {
   return (
     <div className="min-h-screen">
       {/* Header */}
-      <header className="border-b border-scripture-border">
-        <div className="max-w-3xl mx-auto px-4 py-4">
+      <header className="fixed top-0 left-0 right-0 z-50 glass border-b border-scripture-border/50">
+        <div className="max-w-3xl mx-auto px-6 py-4 flex items-center justify-between">
           <Link
             href="/"
+            className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+            Scripture Deep
+          </Link>
+          <Link
+            href="/settings"
             className="text-sm text-muted-foreground hover:text-foreground transition"
           >
-            &larr; Scripture Deep
+            Settings
           </Link>
         </div>
       </header>
 
-      <main className="max-w-3xl mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold mb-8">My Notes</h1>
+      <main className="max-w-3xl mx-auto px-6 pt-24 pb-12">
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold tracking-tight">My Notes</h1>
+          <p className="text-muted-foreground mt-1">Your personal study notes organized by study</p>
+        </div>
 
         {studiesWithNotes.length > 0 ? (
-          <div className="space-y-8">
+          <div className="space-y-6">
             {studiesWithNotes.map(({ study, notes: studyNotes }) => (
-              <div key={study.id} className="border border-scripture-border rounded-lg overflow-hidden">
-                <div className="bg-muted px-4 py-3 border-b border-scripture-border">
+              <div key={study.id} className="premium-card overflow-hidden">
+                <div className="bg-muted/50 px-5 py-4 border-b border-scripture-border">
                   <Link
                     href={`/study/${study.slug}`}
-                    className="text-lg font-semibold hover:text-primary transition"
+                    className="text-lg font-semibold hover:text-accent transition"
                   >
                     {study.title}
                   </Link>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-sm text-muted-foreground mt-0.5">
                     {studyNotes.length} note{studyNotes.length !== 1 ? 's' : ''}
                   </p>
                 </div>
@@ -270,10 +282,11 @@ export default async function NotesPage({ searchParams }: NotesPageProps) {
                   {studyNotes
                     .sort((a, b) => a.sectionPosition - b.sectionPosition)
                     .map((note) => (
-                      <div key={note.id} className="p-4">
+                      <div key={note.id} className="p-5">
                         <div className="flex items-start justify-between mb-2">
-                          <h3 className="font-medium text-primary">
-                            {note.sectionPosition}. {note.sectionHeading}
+                          <h3 className="font-medium">
+                            <span className="badge mr-2">{note.sectionPosition}</span>
+                            {note.sectionHeading}
                           </h3>
                           <div className="flex items-center gap-3">
                             <span className="text-xs text-muted-foreground">
@@ -282,13 +295,13 @@ export default async function NotesPage({ searchParams }: NotesPageProps) {
                             <DeleteNoteButton noteId={note.id} />
                           </div>
                         </div>
-                        <p className="text-sm whitespace-pre-wrap">{note.body}</p>
+                        <p className="text-sm whitespace-pre-wrap text-muted-foreground">{note.body}</p>
                       </div>
                     ))}
                 </div>
 
                 {/* Export button */}
-                <div className="bg-muted px-4 py-3 border-t border-scripture-border">
+                <div className="bg-muted/50 px-5 py-3 border-t border-scripture-border">
                   <ExportButton
                     studyTitle={study.title}
                     notes={studyNotes.sort((a, b) => a.sectionPosition - b.sectionPosition)}
@@ -298,11 +311,16 @@ export default async function NotesPage({ searchParams }: NotesPageProps) {
             ))}
           </div>
         ) : (
-          <div className="text-center py-12 text-muted-foreground">
-            <p>You haven&apos;t written any notes yet.</p>
+          <div className="text-center py-16 border border-dashed border-scripture-border rounded-2xl">
+            <div className="w-14 h-14 mx-auto mb-4 rounded-xl bg-muted flex items-center justify-center">
+              <svg className="w-7 h-7 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+              </svg>
+            </div>
+            <p className="text-muted-foreground">You haven&apos;t written any notes yet.</p>
             <Link
               href="/"
-              className="inline-block mt-4 text-primary hover:underline"
+              className="inline-block mt-4 btn-accent px-5 py-2 text-sm"
             >
               Browse studies
             </Link>
@@ -312,38 +330,42 @@ export default async function NotesPage({ searchParams }: NotesPageProps) {
         {/* Student Notes Section for Teachers */}
         {isTeacher && sharedStudentNotes.length > 0 && (
           <div className="mt-12">
-            <h2 className="text-2xl font-bold mb-2">Student Notes</h2>
-            <p className="text-sm text-muted-foreground mb-6">
-              {totalStudentNotes} shared note{totalStudentNotes !== 1 ? 's' : ''}
-            </p>
+            <div className="flex items-center justify-between mb-6">
+              <div>
+                <h2 className="text-2xl font-bold tracking-tight">Student Notes</h2>
+                <p className="text-sm text-muted-foreground mt-1">
+                  {totalStudentNotes} shared note{totalStudentNotes !== 1 ? 's' : ''} from your students
+                </p>
+              </div>
+            </div>
             <div className="space-y-4">
               {sharedStudentNotes.map((note) => (
                 <div
                   key={note.id}
-                  className="border border-scripture-border rounded-lg p-4"
+                  className="premium-card p-5"
                 >
-                  <div className="flex items-start justify-between mb-2">
+                  <div className="flex items-start justify-between mb-3">
                     <div>
-                      <span className="inline-block bg-primary/10 text-primary text-xs px-2 py-0.5 rounded mb-1">
+                      <span className="badge-accent text-xs px-2.5 py-1 mb-2 inline-block">
                         {note.studentName}
                       </span>
                       <h3 className="font-medium">
                         <Link
                           href={`/study/${note.studySlug}`}
-                          className="hover:text-primary transition"
+                          className="hover:text-accent transition"
                         >
                           {note.studyTitle}
                         </Link>
-                        <span className="text-muted-foreground"> - </span>
-                        {note.sectionPosition}. {note.sectionHeading}
+                        <span className="text-muted-foreground mx-2">·</span>
+                        <span className="text-muted-foreground">{note.sectionPosition}. {note.sectionHeading}</span>
                       </h3>
                     </div>
                     <span className="text-xs text-muted-foreground">
                       {new Date(note.updated_at).toLocaleDateString()}
                     </span>
                   </div>
-                  <p className="text-sm whitespace-pre-wrap mt-2">{note.body}</p>
-                  <div className="mt-3 pt-3 border-t border-scripture-border">
+                  <p className="text-sm whitespace-pre-wrap text-muted-foreground">{note.body}</p>
+                  <div className="mt-4 pt-4 border-t border-scripture-border">
                     <NoteReplyForm noteId={note.id} existingReply={note.reply} />
                   </div>
                 </div>
@@ -352,24 +374,30 @@ export default async function NotesPage({ searchParams }: NotesPageProps) {
 
             {/* Pagination */}
             {totalPages > 1 && (
-              <div className="flex items-center justify-center gap-2 mt-6">
+              <div className="flex items-center justify-center gap-3 mt-8">
                 {currentPage > 1 && (
                   <Link
                     href={`/notes?page=${currentPage - 1}`}
-                    className="px-3 py-1 text-sm border border-scripture-border rounded hover:bg-muted transition"
+                    className="px-4 py-2 text-sm border border-scripture-border rounded-lg hover:bg-muted transition flex items-center gap-2"
                   >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    </svg>
                     Previous
                   </Link>
                 )}
-                <span className="text-sm text-muted-foreground">
+                <span className="text-sm text-muted-foreground px-4">
                   Page {currentPage} of {totalPages}
                 </span>
                 {currentPage < totalPages && (
                   <Link
                     href={`/notes?page=${currentPage + 1}`}
-                    className="px-3 py-1 text-sm border border-scripture-border rounded hover:bg-muted transition"
+                    className="px-4 py-2 text-sm border border-scripture-border rounded-lg hover:bg-muted transition flex items-center gap-2"
                   >
                     Next
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
                   </Link>
                 )}
               </div>
@@ -378,8 +406,13 @@ export default async function NotesPage({ searchParams }: NotesPageProps) {
         )}
 
         {isTeacher && sharedStudentNotes.length === 0 && studiesWithNotes.length > 0 && (
-          <div className="mt-12 text-center py-8 text-muted-foreground border border-dashed border-scripture-border rounded-lg">
-            <p>No students have shared notes with you yet.</p>
+          <div className="mt-12 text-center py-12 border border-dashed border-scripture-border rounded-2xl">
+            <div className="w-12 h-12 mx-auto mb-3 rounded-xl bg-muted flex items-center justify-center">
+              <svg className="w-6 h-6 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+            <p className="text-muted-foreground">No students have shared notes with you yet.</p>
           </div>
         )}
       </main>
