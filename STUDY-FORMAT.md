@@ -52,6 +52,15 @@ References written inside regular text (Job 1:10, Ephesians 6:10-18) are linked 
 
 A word study sits inside the section it belongs to, after the verse it explains.
 
+**Which words get a word study.** Only words where the original says something the KJV English can't show. Each one must pass at least one of these:
+
+1. **Hidden link:** the same original word appears somewhere that changes the reading (sar is used for both Michael and the prince of Persia)
+2. **Lost nuance:** the English flattens the meaning (transformed in 2 Corinthians 11:14 means a disguise, not a change of nature)
+3. **Hidden meaning in a name:** the name itself teaches something (Tyrus means rock)
+4. **The English hides what the text literally says:** curse in Job 1:11 is literally "bless"
+
+If the original only says what the English already says, leave it out. Frame each one as what the English can't show, not as the KJV being wrong.
+
 ```
 :::word
 word: prince
@@ -99,4 +108,5 @@ Questions:
 - KJV wording only, copied exactly
 - Full book names: 1 John, not 1 Jn
 - No em dashes
+- Every word study passes the rule in section 4
 - Every Strong's number gets checked on Blue Letter Bible before publishing. Anything unconfirmed is marked `check: yes`

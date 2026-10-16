@@ -28,32 +28,8 @@ cross: Leviticus 16:29
 check: no
 :::
 
-:::word
-word: heard
-verse: Daniel 10:12
-language: Hebrew
-original: shama
-strongs: H8085
-meaning: To hear with attention, to hear and respond.
-changes: God's hearing is never passive. He heard, and the answer was sent that same day.
-cross:
-check: no
-:::
-
 > And said, O man greatly beloved, fear not: peace be unto thee, be strong, yea, be strong. And when he had spoken unto me, I was strengthened, and said, Let my lord speak; for thou hast strengthened me.
 > [Daniel 10:11]
-
-:::word
-word: greatly beloved
-verse: Daniel 10:11
-language: Hebrew
-original: chamuwd
-strongs: H2530
-meaning: Desired, precious, treasured.
-changes: Before the explanation, before the battle report, God calls Daniel treasured. Said again in Daniel 10:19 and earlier in Daniel 9:23.
-cross: Daniel 10:19; Daniel 9:23
-check: yes
-:::
 
 > But the prince of the kingdom of Persia withstood me one and twenty days: but, lo, Michael, one of the chief princes, came to help me; and I remained there with the kings of Persia.
 > [Daniel 10:13]
@@ -99,18 +75,6 @@ check: no
 
 > And said, O man greatly beloved, fear not: peace be unto thee, be strong, yea, be strong. And when he had spoken unto me, I was strengthened, and said, Let my lord speak; for thou hast strengthened me.
 > [Daniel 10:19]
-
-:::word
-word: be strong
-verse: Daniel 10:19
-language: Hebrew
-original: chazaq
-strongs: H2388
-meaning: To be strong, make firm, take hold.
-changes: Said twice, then Daniel says "I was strengthened," the same word. The command came with the power to obey it.
-cross:
-check: no
-:::
 
 **Notice:**
 
@@ -266,18 +230,6 @@ cross: Romans 12:2
 check: no
 :::
 
-:::word
-word: Abaddon / Apollyon
-verse: Revelation 9:11
-language: Greek
-original:
-strongs: G3, G623
-meaning: Destruction (Hebrew) and destroyer (Greek).
-changes: John gives the name in both languages so no one misses it: he destroys. Jesus came "that they might have life" (John 10:10).
-cross: John 10:10
-check: no
-:::
-
 **His kingdom has rulers.** The prince of Persia and prince of Grecia (Daniel 10:13, 20) are best read as spiritual rulers under Satan over territories, not names of Satan himself.
 
 > And he said unto them, I beheld Satan as lightning fall from heaven.
@@ -358,18 +310,6 @@ cross:
 check: no
 :::
 
-:::word
-word: sift
-verse: Luke 22:31
-language: Greek
-original: siniazo
-strongs: G4617
-meaning: To shake grain in a sieve.
-changes: Sifting separates. What's left after the shaking is what's real. Peter came out of it called to "strengthen thy brethren."
-cross:
-check: no
-:::
-
 **Already defeated:**
 
 > And having spoiled principalities and powers, he made a shew of them openly, triumphing over them in it.
@@ -399,18 +339,6 @@ check: no
 
 > For we wrestle not against flesh and blood, but against principalities, against powers, against the rulers of the darkness of this world, against spiritual wickedness in high places.
 > [Ephesians 6:12]
-
-:::word
-word: wrestle
-verse: Ephesians 6:12
-language: Greek
-original: pale
-strongs: G3823
-meaning: Wrestling, hand-to-hand combat.
-changes: This is a close-range fight, not arrows from a distance. It's personal.
-cross:
-check: no
-:::
 
 :::word
 word: principalities, powers, rulers
@@ -468,18 +396,6 @@ Point: Scripture is full of people who waited. Each delay had a reason, and none
 
 > And he spake a parable unto them to this end, that men ought always to pray, and not to faint.
 > [Luke 18:1]
-
-:::word
-word: faint
-verse: Luke 18:1
-language: Greek
-original: ekkakeo
-strongs: G1573
-meaning: To lose heart, give up, grow weary.
-changes: Jesus told the parable for one reason: so we don't quit while we wait.
-cross:
-check: no
-:::
 
 > And shall not God avenge his own elect, which cry day and night unto him, though he bear long with them? I tell you that he will avenge them speedily.
 > [Luke 18:7-8]
@@ -715,18 +631,6 @@ check: no
 
 > And another angel came and stood at the altar, having a golden censer; and there was given unto him much incense, that he should offer it with the prayers of all saints upon the golden altar which was before the throne.
 > [Revelation 8:3-5]
-
-:::word
-word: incense
-verse: Revelation 8:3
-language: Greek
-original: thumiama
-strongs: G2368
-meaning: Incense, a burnt offering of sweet spices.
-changes: "Let my prayer be set forth before thee as incense" (Psalm 141:2). Prayers are gathered and offered. None of them are lost.
-cross: Psalm 141:2
-check: no
-:::
 
 **God answers:**
 
