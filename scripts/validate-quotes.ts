@@ -84,12 +84,14 @@ interface Quote {
   lineNumber: number
 }
 
+type QuoteResult = 'exact' | 'partial' | 'error'
+
 interface QuoteValidation {
   reference: string
   quoteText: string
-  expectedText: string
-  matches: boolean
-  issues: string[]
+  fullKJV: string
+  result: QuoteResult
+  errorReason?: string
   lineNumber: number
 }
 
@@ -165,6 +167,12 @@ async function fetchVerseText(book: string, chapter: number, verseStart: number,
     return ''
   }
 
+  // Check if we got all verses in the range
+  const expectedCount = verseEnd - verseStart + 1
+  if (data.length !== expectedCount) {
+    return '' // Missing verses in range
+  }
+
   // Combine verses into expected text
   return data.map(v => v.text).join(' ')
 }
@@ -172,24 +180,20 @@ async function fetchVerseText(book: string, chapter: number, verseStart: number,
 function normalizeText(text: string): string {
   return text
     .replace(/\s+/g, ' ')
-    .replace(/['']/g, "'")
-    .replace(/[""]/g, '"')
+    .replace(/[\u2018\u2019'']/g, "'")  // All types of single quotes/apostrophes
+    .replace(/[\u201C\u201D""]/g, '"')  // All types of double quotes
     .trim()
     .toLowerCase()
 }
 
-function findMissingWords(quoteText: string, expectedText: string): string[] {
-  const quoteWords = new Set(normalizeText(quoteText).split(' ').filter(w => w.length > 2))
-  const expectedWords = normalizeText(expectedText).split(' ').filter(w => w.length > 2)
+/**
+ * Check if quoteText is an exact continuous substring of fullText
+ */
+function isContinuousSubstring(quoteText: string, fullText: string): boolean {
+  const normalizedQuote = normalizeText(quoteText)
+  const normalizedFull = normalizeText(fullText)
 
-  const missing: string[] = []
-  for (const word of expectedWords) {
-    if (!quoteWords.has(word)) {
-      missing.push(word)
-    }
-  }
-
-  return missing.slice(0, 10) // Limit to first 10
+  return normalizedFull.includes(normalizedQuote)
 }
 
 async function validateQuotes(filePath: string): Promise<QuoteValidation[]> {
@@ -206,72 +210,58 @@ async function validateQuotes(filePath: string): Promise<QuoteValidation[]> {
     if (!parsed) {
       validations.push({
         reference: quote.reference,
-        quoteText: quote.text.substring(0, 50) + '...',
-        expectedText: '',
-        matches: false,
-        issues: ['Could not parse reference'],
+        quoteText: quote.text,
+        fullKJV: '',
+        result: 'error',
+        errorReason: 'Could not parse reference',
         lineNumber: quote.lineNumber
       })
       continue
     }
 
-    const expectedText = await fetchVerseText(
+    const fullKJV = await fetchVerseText(
       parsed.book,
       parsed.chapter,
       parsed.verseStart,
       parsed.verseEnd
     )
 
-    if (!expectedText) {
+    if (!fullKJV) {
       validations.push({
         reference: quote.reference,
-        quoteText: quote.text.substring(0, 50) + '...',
-        expectedText: '',
-        matches: false,
-        issues: ['Verse not found in database'],
+        quoteText: quote.text,
+        fullKJV: '',
+        result: 'error',
+        errorReason: 'Verse not found in database or missing verses in range',
         lineNumber: quote.lineNumber
       })
       continue
     }
 
     const normalizedQuote = normalizeText(quote.text)
-    const normalizedExpected = normalizeText(expectedText)
+    const normalizedKJV = normalizeText(fullKJV)
 
-    const issues: string[] = []
+    let result: QuoteResult
+    let errorReason: string | undefined
 
-    // Check exact match
-    const exactMatch = normalizedQuote === normalizedExpected
-
-    if (!exactMatch) {
-      // Check if quote is subset (shortened)
-      const quoteLength = normalizedQuote.length
-      const expectedLength = normalizedExpected.length
-
-      if (quoteLength < expectedLength * 0.9) {
-        issues.push(`Quote is ${Math.round((1 - quoteLength/expectedLength) * 100)}% shorter than full text`)
-
-        // Find missing words
-        const missing = findMissingWords(normalizedQuote, normalizedExpected)
-        if (missing.length > 0) {
-          issues.push(`Missing words: ${missing.join(', ')}`)
-        }
-      } else if (quoteLength > expectedLength * 1.1) {
-        issues.push('Quote is longer than expected verse text')
-      } else {
-        // Similar length but different - check for word differences
-        const missing = findMissingWords(normalizedQuote, normalizedExpected)
-        if (missing.length > 0) {
-          issues.push(`Text differs. Missing: ${missing.join(', ')}`)
-        }
-      }
+    if (normalizedQuote === normalizedKJV) {
+      // Exact match
+      result = 'exact'
+    } else if (isContinuousSubstring(quote.text, fullKJV)) {
+      // Partial - continuous substring of KJV
+      result = 'partial'
+    } else {
+      // Error - words differ
+      result = 'error'
+      errorReason = 'Words differ from KJV text'
     }
 
     validations.push({
       reference: quote.reference,
-      quoteText: quote.text.substring(0, 80) + (quote.text.length > 80 ? '...' : ''),
-      expectedText: expectedText.substring(0, 80) + (expectedText.length > 80 ? '...' : ''),
-      matches: exactMatch || issues.length === 0,
-      issues,
+      quoteText: quote.text,
+      fullKJV: fullKJV,
+      result,
+      errorReason,
       lineNumber: quote.lineNumber
     })
   }
@@ -287,31 +277,38 @@ async function main() {
 
   const validations = await validateQuotes(filePath)
 
-  const issues = validations.filter(v => !v.matches)
-  const passed = validations.filter(v => v.matches)
+  const exact = validations.filter(v => v.result === 'exact')
+  const partial = validations.filter(v => v.result === 'partial')
+  const errors = validations.filter(v => v.result === 'error')
 
   console.log(`\n${'='.repeat(80)}`)
-  console.log(`RESULTS: ${passed.length} passed, ${issues.length} issues\n`)
+  console.log(`RESULTS: ${exact.length} exact, ${partial.length} partial, ${errors.length} errors\n`)
 
-  if (issues.length > 0) {
-    console.log('ISSUES FOUND:\n')
-    for (const v of issues) {
-      console.log(`Line ${v.lineNumber}: ${v.reference}`)
-      console.log(`  Quote: "${v.quoteText}"`)
-      if (v.expectedText) {
-        console.log(`  Expected: "${v.expectedText}"`)
-      }
-      for (const issue of v.issues) {
-        console.log(`  - ${issue}`)
-      }
-      console.log()
-    }
+  // Show summary
+  console.log('Summary:')
+  for (const v of validations) {
+    let icon = ''
+    if (v.result === 'exact') icon = '='
+    else if (v.result === 'partial') icon = '~'
+    else icon = '!'
+    console.log(`  ${icon} ${v.reference} [${v.result}]${v.errorReason ? ' - ' + v.errorReason : ''}`)
   }
 
-  console.log('\nAll validated quotes:')
-  for (const v of validations) {
-    const status = v.matches ? '✓' : '✗'
-    console.log(`  ${status} ${v.reference}${v.issues.length ? ' - ' + v.issues[0] : ''}`)
+  // Show non-exact quotes table
+  const nonExact = validations.filter(v => v.result !== 'exact')
+  if (nonExact.length > 0) {
+    console.log(`\n${'='.repeat(80)}`)
+    console.log('NON-EXACT QUOTES:\n')
+
+    for (const v of nonExact) {
+      console.log(`--- ${v.reference} [${v.result.toUpperCase()}] ---`)
+      if (v.errorReason) {
+        console.log(`Reason: ${v.errorReason}`)
+      }
+      console.log(`Study text: ${v.quoteText}`)
+      console.log(`Full KJV:   ${v.fullKJV || '(not found)'}`)
+      console.log()
+    }
   }
 }
 
