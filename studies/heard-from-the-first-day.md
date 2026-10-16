@@ -13,6 +13,30 @@ Point: Daniel prayed and fasted three weeks. Heaven answered on day one, and yet
 > In those days I Daniel was mourning three full weeks. I ate no pleasant bread, neither came flesh nor wine in my mouth, neither did I anoint myself at all, till three whole weeks were fulfilled.
 > [Daniel 10:2-3]
 
+:::word
+word: pleasant / greatly beloved
+verse: Daniel 10:3
+language: Hebrew
+original: chamuwd
+strongs: H2530
+meaning: Desirable, precious. "Pleasant bread" in 10:3 is literally bread of desirable things. "Greatly beloved" in 10:11 and 10:19 is literally man of desirable things.
+changes: Daniel gave up the desirable bread for three weeks, and heaven's first words to him were: you are the desirable one. What he denied himself, God called him.
+cross: Daniel 10:11; Daniel 10:19; Daniel 9:23
+check: yes
+:::
+
+:::word
+word: Daniel
+verse: Daniel 10:2
+language: Hebrew
+original: Daniye'l
+strongs: H1840
+meaning: "God is my judge."
+changes: This study is a courtroom: Satan is the accuser, and yet the man praying carries a name that says God is the judge. The verdict on Daniel's prayer was settled in heaven on day one.
+cross: Revelation 12:10; Daniel 10:12
+check: no
+:::
+
 > Then said he unto me, Fear not, Daniel: for from the first day that thou didst set thine heart to understand, and to chasten thyself before thy God, thy words were heard, and I am come for thy words.
 > [Daniel 10:12]
 
@@ -76,6 +100,18 @@ check: no
 > And said, O man greatly beloved, fear not: peace be unto thee, be strong, yea, be strong. And when he had spoken unto me, I was strengthened, and said, Let my lord speak; for thou hast strengthened me.
 > [Daniel 10:19]
 
+:::word
+word: peace
+verse: Daniel 10:19
+language: Hebrew
+original: shalowm
+strongs: H7965
+meaning: Completeness, wholeness, safety, well-being.
+changes: More than calm. Right after the battle report, the angel tells Daniel he is whole and safe. The fight is real, and yet you are not undone.
+cross: Numbers 6:26; Philippians 4:7
+check: no
+:::
+
 **Notice:**
 
 - The prayer was not stopped. It was **heard** the first day (v12)
@@ -92,12 +128,18 @@ Point: His names reveal how he operates: he accuses, tempts, lies, deceives, and
 | Satan (adversary) | Satan standing at his right hand to resist him | Zechariah 3:1, Job 1:6 |
 | The Devil | that old serpent, called the Devil, and Satan | Revelation 12:9 |
 | Lucifer | How art thou fallen from heaven, O Lucifer, son of the morning! | Isaiah 14:12 |
+| Son of the morning | O Lucifer, son of the morning! | Isaiah 14:12 |
+| King of Babylon | take up this proverb against the king of Babylon | Isaiah 14:4 (the setting of the Lucifer passage, like Tyrus in Ezekiel 28) |
 | Anointed cherub | Thou art the anointed cherub that covereth | Ezekiel 28:14 |
+| Covering cherub | I will destroy thee, O covering cherub | Ezekiel 28:16 |
 | The serpent | Now the serpent was more subtil than any beast of the field | Genesis 3:1 |
+| Leviathan, that crooked serpent | leviathan the piercing serpent, even leviathan that crooked serpent | Isaiah 27:1 (commonly applied to Satan; debated) |
 | The great dragon | And the great dragon was cast out | Revelation 12:9 |
+| Great red dragon | a great red dragon, having seven heads and ten horns | Revelation 12:3 |
 | Deceiver | which deceiveth the whole world | Revelation 12:9 |
 | Accuser | the accuser of our brethren is cast down | Revelation 12:10 |
 | Beelzebub | Beelzebub the prince of the devils | Matthew 12:24 |
+| Strong man | except he first bind the strong man | Matthew 12:29 |
 | Belial | what concord hath Christ with Belial? | 2 Corinthians 6:15 |
 | Prince of this world | now shall the prince of this world be cast out | John 12:31 |
 | Prince of the power of the air | the spirit that now worketh in the children of disobedience | Ephesians 2:2 |
@@ -105,10 +147,16 @@ Point: His names reveal how he operates: he accuses, tempts, lies, deceives, and
 | Liar and murderer | He was a murderer from the beginning | John 8:44 |
 | The tempter | And when the tempter came to him | Matthew 4:3 |
 | That wicked one | that wicked one toucheth him not | 1 John 5:18 |
+| The wicked one | then cometh the wicked one, and catcheth away | Matthew 13:19; Matthew 13:38 |
 | The enemy | The enemy that sowed them is the devil | Matthew 13:39 |
+| The thief | The thief cometh not, but for to steal, and to kill, and to destroy | John 10:10 (commonly applied to Satan; in context, false shepherds) |
 | Adversary, roaring lion | your adversary the devil, as a roaring lion | 1 Peter 5:8 |
 | Angel of light | Satan himself is transformed into an angel of light | 2 Corinthians 11:14 |
 | Abaddon / Apollyon | the angel of the bottomless pit | Revelation 9:11 |
+
+**Morning star belongs to Jesus.** In the KJV, "morning star" is a title of Christ: "I am the root and the offspring of David, and the bright and morning star" (Revelation 22:16; see also Revelation 2:28 and 2 Peter 1:19). The Hebrew behind "Lucifer" means shining one or morning star, so Satan is the counterfeit. He copies Christ's title. He doesn't own it.
+
+**Not names of Satan.** The beast, the man of sin, and the son of perdition (Revelation 13; 2 Thessalonians 2:3) are the antichrist. The dragon gives the beast his power (Revelation 13:2), and yet they are not the same being.
 
 :::word
 word: Satan
@@ -117,8 +165,8 @@ language: Hebrew
 original: satan
 strongs: H7854, H7853
 meaning: Adversary, one who opposes. The verb means to resist, to accuse.
-changes: In Zechariah 3:1 he stands "to resist him," and that's the verb form of his own name. His name is his job description.
-cross:
+changes: In Zechariah 3:1 he stands "to resist him," and that's the verb form of his own name. His name is his job description. The word is a role before it's a name: in Numbers 22:22 the angel of the LORD himself stood in Balaam's way "for an adversary," and the Hebrew there is satan.
+cross: Numbers 22:22
 check: no
 :::
 
@@ -165,8 +213,8 @@ language: Hebrew
 original: heylel, halal
 strongs: H1966, H1984
 meaning: Shining one, morning star. The root means to shine, and also to boast.
-changes: His name holds his glory and his fall at once: brightness that turned into boasting. Jesus is the real one: "the bright and morning star" (Revelation 22:16).
-cross: Revelation 22:16
+changes: His name holds his glory and his fall at once: brightness that turned into boasting. And yet in the KJV the title morning star belongs to Jesus: "the bright and morning star" (Revelation 22:16). Satan is the counterfeit light.
+cross: Revelation 22:16; Revelation 2:28; 2 Peter 1:19
 check: no
 :::
 
@@ -235,12 +283,132 @@ check: no
 > And he said unto them, I beheld Satan as lightning fall from heaven.
 > [Luke 10:18]
 
+:::word
+word: subtil
+verse: Genesis 3:1
+language: Hebrew
+original: aruwm, arowm
+strongs: H6175, H6174
+meaning: Crafty, shrewd.
+changes: One verse earlier, the man and woman "were both naked" (Genesis 2:25), arowm, almost the same word. The Hebrew sets the naked couple right beside the crafty serpent: innocence and cunning, side by side.
+cross: Genesis 2:25; Job 1:21
+check: no
+:::
+
+:::word
+word: serpent
+verse: Genesis 3:1
+language: Hebrew
+original: nachash, nachash
+strongs: H5175, H5172
+meaning: Serpent. From a root meaning to hiss or whisper, used of whispering spells and divination.
+changes: His first weapon in Eden was a whisper: "Yea, hath God said?" Deception works by whisper long before it roars.
+cross: Genesis 3:1; 1 Peter 5:8
+check: no
+:::
+
+:::word
+word: tempter
+verse: Matthew 4:3
+language: Greek
+original: peirazo
+strongs: G3985
+meaning: To test, try, prove. Also to tempt.
+changes: One Greek word covers both test and tempt. The difference is the goal: God tests to prove you, Satan tempts to break you. Abraham "was tried" with the same word (Hebrews 11:17).
+cross: Hebrews 11:17; James 1:13
+check: no
+:::
+
+:::word
+word: adversary
+verse: 1 Peter 5:8
+language: Greek
+original: antidikos
+strongs: G476
+meaning: An opponent in a lawsuit.
+changes: Another courtroom word, like accuser. He's the opposing lawyer. And Peter's next words are "whom resist stedfast in the faith."
+cross: 1 Peter 5:9; Revelation 12:10; Matthew 5:25
+check: no
+:::
+
+:::word
+word: world (god of this world)
+verse: 2 Corinthians 4:4
+language: Greek
+original: aion
+strongs: G165
+meaning: An age, a period of time.
+changes: He is god of this age, not of all time. His rule has an end date.
+cross: Galatians 1:4; Revelation 20:10
+check: no
+:::
+
+:::word
+word: Babylon
+verse: Isaiah 14:4
+language: Hebrew
+original: Babel
+strongs: H894
+meaning: Confusion. From balal, to mix or confound.
+changes: The Lucifer passage is addressed to the king of confusion. It's the same name as Babel, where God "did there confound the language" (Genesis 11:9). Pride that reaches for heaven ends in confusion, in Eden, at Babel, and in Isaiah 14.
+cross: Genesis 11:9; Isaiah 14:13-14
+check: no
+:::
+
+:::word
+word: Leviathan
+verse: Isaiah 27:1
+language: Hebrew
+original: livyathan
+strongs: H3882
+meaning: A coiling sea creature. From a root meaning to twine or wreathe.
+changes: A creature that wraps itself around its prey. Isaiah promises the LORD "shall punish leviathan the piercing serpent" with his "sore and great and strong sword." Whatever coils around you, God has a sword for it.
+cross: Job 41:1; Psalm 74:14
+check: no
+:::
+
 ## 3. His Limits: Job 1-2 and Luke 22
 
 Point: Satan attacks, and yet he must ask permission and stay inside the boundary God sets.
 
 > Hast not thou made an hedge about him, and about his house, and about all that he hath on every side?
 > [Job 1:10]
+
+:::word
+word: for nought / without cause
+verse: Job 1:9
+language: Hebrew
+original: chinnam
+strongs: H2600
+meaning: For nothing, freely, without a cause.
+changes: Satan's accusation: "Doth Job fear God for nought?" (1:9). Then God throws the same word back at him: "thou movedst me against him, to destroy him without cause" (2:3). Job's faith was never for pay, and his suffering was never his fault.
+cross: Job 2:3
+check: no
+:::
+
+:::word
+word: perfect / integrity
+verse: Job 1:1
+language: Hebrew
+original: tam, tummah
+strongs: H8535, H8538
+meaning: Complete, whole, without blemish. Integrity is the noun from the same root.
+changes: God calls Job perfect (1:1), says "he holdeth fast his integrity" (2:3), and then his wife asks, "Dost thou still retain thine integrity?" (2:9). The whole contest is over one word: would Job stay whole?
+cross: Job 2:3; Job 2:9; Job 27:5
+check: no
+:::
+
+:::word
+word: Job
+verse: Job 1:1
+language: Hebrew
+original: Iyowb
+strongs: H347
+meaning: Strong's gives "hated, persecuted."
+changes: His name means persecuted, and the book pulls back the curtain on who the persecutor was, and who set his limits.
+cross: Job 1:12; Job 2:6
+check: no
+:::
 
 :::word
 word: hedge
@@ -258,19 +426,43 @@ check: no
 > [Job 1:12]
 
 :::word
+word: touch
+verse: Job 1:11
+language: Hebrew
+original: naga
+strongs: H5060
+meaning: To touch. Also to strike, smite, lay a hand on violently. Its noun form means plague or stroke.
+changes: This is no gentle touch. Satan asked to strike. The same word describes the wind that "smote the four corners of the house" and killed Job's children (1:19), and Satan uses it again for his body: "touch his bone and his flesh" (2:5). And yet in 1 John 5:18, "that wicked one toucheth him not."
+cross: Job 1:19; Job 2:5; Job 19:21; 1 John 5:18
+check: no
+:::
+
+:::word
 word: curse
 verse: Job 1:11
 language: Hebrew
 original: barak
 strongs: H1288
 meaning: Literally "to bless."
-changes: In Job 1:11 and Job 2:9 the Hebrew literally says "bless God." It's a polite stand-in. The writer wouldn't put "curse God" on the page.
-cross: Job 2:9
+changes: In Job 1:11 and Job 2:9 the Hebrew literally says "bless God." It's a polite stand-in. The writer wouldn't put "curse God" on the page. And one verse earlier Satan says God "blessed the work of his hands" (Job 1:10), the same word. Satan wants the blessing turned into a curse.
+cross: Job 2:9; Job 1:10
 check: no
 :::
 
 > And the LORD said unto Satan, Behold, he is in thine hand; but save his life.
 > [Job 2:6]
+
+:::word
+word: sore boils
+verse: Job 2:7
+language: Hebrew
+original: shchiyn
+strongs: H7822
+meaning: An inflamed boil or ulcer.
+changes: The same word as the boils on Egypt (Exodus 9:9), and the covenant curse: "a sore botch... from the sole of thy foot unto the top of thy head" (Deuteronomy 28:35). Job got the curse's symptoms without the curse's cause. Suffering is not always punishment.
+cross: Exodus 9:9; Deuteronomy 28:35
+check: no
+:::
 
 **How the attack came:**
 
@@ -288,15 +480,75 @@ The attacks came stacked, one messenger still speaking when the next arrived. Th
 > Naked came I out of my mother's womb, and naked shall I return thither: the LORD gave, and the LORD hath taken away; blessed be the name of the LORD. In all this Job sinned not, nor charged God foolishly.
 > [Job 1:21-22]
 
+:::word
+word: charged God foolishly
+verse: Job 1:22
+language: Hebrew
+original: tiphlah
+strongs: H8604
+meaning: Folly, something unseemly or tasteless.
+changes: Job never said anything unworthy of God. He grieved, tore his robe, fell on the ground, and still wouldn't put one tasteless word in God's mouth.
+cross: Job 1:20; Job 2:10
+check: no
+:::
+
 **The restoration:**
 
 > And the LORD turned the captivity of Job, when he prayed for his friends: also the LORD gave Job twice as much as he had before.
 > [Job 42:10]
 
+:::word
+word: turned the captivity
+verse: Job 42:10
+language: Hebrew
+original: shuwb, shbiyth
+strongs: H7725, H7622
+meaning: To turn back the captivity. A Hebrew way of saying restore what was lost.
+changes: Job was never a prisoner, and yet the Hebrew calls his loss a captivity. God didn't just replace his things. He brought him back out. And it turned "when he prayed for his friends."
+cross: Psalm 126:4
+check: no
+:::
+
 **The same pattern with Peter:**
 
 > Simon, Simon, behold, Satan hath desired to have you, that he may sift you as wheat: But I have prayed for thee, that thy faith fail not: and when thou art converted, strengthen thy brethren.
 > [Luke 22:31-32]
+
+:::word
+word: Simon / Peter
+verse: Luke 22:31
+language: Greek
+original: Simon, Petros
+strongs: G4613, G4074
+meaning: Simon: "hearing" (from the Hebrew Simeon). Peter: "a rock."
+changes: Jesus said "Simon, Simon," literally hearing, hearing, right before "I have prayed for thee." And his other name means rock: the true Rock's man, set against the false rock of Tyrus.
+cross: Genesis 29:33; Matthew 16:18; Ezekiel 28:2
+check: no
+:::
+
+:::word
+word: converted / strengthen
+verse: Luke 22:32
+language: Greek
+original: epistrepho, sterizo
+strongs: G1994, G4741
+meaning: To turn back. To make firm, set fast.
+changes: "Converted" here means turned back after his fall, not saved for the first time. And Peter uses the same word, translated "stablish," in his own letter (1 Peter 5:10), two verses after he warns about the roaring lion. He did exactly what Jesus told him.
+cross: 1 Peter 5:8-10
+check: no
+:::
+
+:::word
+word: fail
+verse: Luke 22:32
+language: Greek
+original: ekleipo
+strongs: G1587
+meaning: To fail, leave off, die out.
+changes: Our word "eclipse" comes from it. Jesus didn't pray that Peter wouldn't fall. He prayed his faith wouldn't go dark. It dimmed that night, and yet it never went out.
+cross: Luke 22:61-62
+check: no
+:::
 
 :::word
 word: desired
@@ -315,8 +567,44 @@ check: no
 > And having spoiled principalities and powers, he made a shew of them openly, triumphing over them in it.
 > [Colossians 2:15]
 
+:::word
+word: spoiled / triumphing
+verse: Colossians 2:15
+language: Greek
+original: apekduomai, thriambeuo
+strongs: G554, G2358
+meaning: To strip off, disarm. To lead in a victory parade.
+changes: A Roman general paraded defeated enemies through the streets, stripped of their weapons. That's the picture: the principalities of Ephesians 6 were disarmed and paraded at the cross.
+cross: Ephesians 6:12; 2 Corinthians 2:14
+check: no
+:::
+
 > Submit yourselves therefore to God. Resist the devil, and he will flee from you.
 > [James 4:7]
+
+:::word
+word: submit
+verse: James 4:7
+language: Greek
+original: hupotasso
+strongs: G5293
+meaning: A military word: to arrange under, to place yourself in rank.
+changes: Before "resist the devil" comes "submit to God," and it's a soldier's word: get in rank. The enemy has ranks (Ephesians 6:12). So do we, and resisting only works from inside God's line.
+cross: Ephesians 6:12; 1 Peter 5:5-6
+check: no
+:::
+
+:::word
+word: resist
+verse: James 4:7
+language: Greek
+original: anthistemi
+strongs: G436
+meaning: To stand against, oppose.
+changes: Same word as "withstand" in Ephesians 6:13 and "whom resist stedfast" in 1 Peter 5:9. James, Paul and Peter give the same order. The enemy withstood Daniel, and we are told to withstand him back.
+cross: Ephesians 6:13; 1 Peter 5:9; Daniel 10:13
+check: no
+:::
 
 ## 4. The Real Battle: Ephesians 6:10-18
 
@@ -376,8 +664,44 @@ check: no
 - Helmet of salvation
 - Sword of the Spirit, which is the word of God
 
+:::word
+word: word (sword of the Spirit)
+verse: Ephesians 6:17
+language: Greek
+original: rhema
+strongs: G4487
+meaning: A spoken word, an utterance.
+changes: Not logos, the word as a whole, but rhema, the word spoken in the moment. Jesus answered the tempter out loud: "It is written" (Matthew 4:4). The sword works when it comes out of your mouth.
+cross: Matthew 4:4
+check: no
+:::
+
+:::word
+word: shield
+verse: Ephesians 6:16
+language: Greek
+original: thureos
+strongs: G2375
+meaning: A large shield shaped like a door. From the word for door.
+changes: Not a small round shield. One the size of a door that covered the whole body, and soldiers locked them side by side into a wall. Faith is meant to be carried together.
+cross: Ephesians 6:16; Psalm 91:4
+check: no
+:::
+
 > Praying always with all prayer and supplication in the Spirit, and watching thereunto with all perseverance and supplication for all saints.
 > [Ephesians 6:18]
+
+:::word
+word: watching
+verse: Ephesians 6:18
+language: Greek
+original: agrupneo
+strongs: G69
+meaning: To be sleepless, to keep awake.
+changes: Literally losing sleep over it. Daniel's three weeks, the widow crying day and night: prayer that stays awake.
+cross: Luke 21:36
+check: no
+:::
 
 **Connect it:** "Principalities" and "rulers of the darkness" in Ephesians 6:12 are the same kind of power as the prince of Persia in Daniel 10:13. Daniel's 21 days of prayer and fasting is Ephesians 6:18 in action.
 
@@ -391,6 +715,18 @@ Point: Scripture is full of people who waited. Each delay had a reason, and none
 
 > And said to his servant, Go up now, look toward the sea. And he went up, and looked, and said, There is nothing. And he said, Go again seven times. And it came to pass at the seventh time, that he said, Behold, there ariseth a little cloud out of the sea, like a man's hand.
 > [1 Kings 18:43-44]
+
+:::word
+word: Elijah
+verse: 1 Kings 18:43
+language: Hebrew
+original: Eliyah
+strongs: H452
+meaning: "My God is Jehovah."
+changes: On Carmel the whole fight was over who is God: "The LORD, he is the God" (1 Kings 18:39). The man praying seven times for rain carried the answer in his name.
+cross: 1 Kings 18:39; James 5:17
+check: no
+:::
 
 **The persistent widow (Luke 18:1-8)**
 
@@ -418,6 +754,18 @@ check: no
 > [Luke 11:9]
 
 :::word
+word: ask, seek, knock
+verse: Luke 11:9
+language: Greek
+original: aiteo, zeteo, krouo
+strongs: G154, G2212, G2925
+meaning: To ask, to seek, to knock. All three are present-tense commands.
+changes: The tense means keep on: keep asking, keep seeking, keep knocking. Jesus said it right after the friend at midnight. Persistence is built into the grammar.
+cross: Luke 18:1
+check: no
+:::
+
+:::word
 word: importunity
 verse: Luke 11:8
 language: Greek
@@ -437,12 +785,36 @@ check: no
 > O woman, great is thy faith: be it unto thee even as thou wilt. And her daughter was made whole from that very hour.
 > [Matthew 15:28]
 
+:::word
+word: Canaanite
+verse: Matthew 15:22
+language: Greek
+original: Chananaios
+strongs: G5478
+meaning: From Canaan, which Strong's gives as "humiliated," "lowland."
+changes: Her people's name means brought low. She humbled herself even further, "yet the dogs eat of the crumbs," and received everything she asked for.
+cross: Matthew 15:27; James 4:10
+check: no
+:::
+
 ### Delay for a bigger purpose
 
 **Lazarus (John 11:1-44)**
 
 > This sickness is not unto death, but for the glory of God, that the Son of God might be glorified thereby.
 > [John 11:4]
+
+:::word
+word: Lazarus
+verse: John 11:4
+language: Greek
+original: Lazaros
+strongs: G2976
+meaning: "God has helped." The Greek form of Eleazar.
+changes: The man Jesus waited two days to visit was named God has helped. The delay didn't cancel the name. It proved it.
+cross: John 11:43-44
+check: no
+:::
 
 > When he had heard therefore that he was sick, he abode two days still in the same place where he was.
 > [John 11:6]
@@ -458,6 +830,30 @@ Jairus begs Jesus to come. On the way, Jesus stops for the woman with an issue o
 
 > Be not afraid, only believe.
 > [Mark 5:36]
+
+:::word
+word: Jairus
+verse: Mark 5:22
+language: Greek
+original: Iaeiros
+strongs: G2383
+meaning: From the Hebrew Jair: "he enlightens."
+changes: The father who got the worst news on the road had a name that says God gives light. Jesus walked him through the dark into his daughter's room.
+cross: Mark 5:41-42
+check: no
+:::
+
+:::word
+word: only believe
+verse: Mark 5:36
+language: Greek
+original: pisteuo
+strongs: G4100
+meaning: To believe, trust. Here a present-tense command.
+changes: Present tense means keep on believing. Jairus already believed when he came to Jesus. He was told to keep believing after the bad news arrived.
+cross: Mark 5:23
+check: no
+:::
 
 > And straightway the damsel arose, and walked; for she was of the age of twelve years.
 > [Mark 5:42]
@@ -478,13 +874,73 @@ Abram was seventy and five years old when he left Haran. Abraham was an hundred 
 > Is any thing too hard for the LORD? At the time appointed I will return unto thee, according to the time of life, and Sarah shall have a son.
 > [Genesis 18:14]
 
+:::word
+word: Abraham, Sarah, Isaac
+verse: Genesis 18:14
+language: Hebrew
+original: Abraham, Sarah, Yitschaq
+strongs: H85, H8283, H3327
+meaning: "Father of a multitude," "princess," "he laughs."
+changes: Sarah means princess, from sar, the same word as prince in Daniel 10:13. Isaac means he laughs: Sarah laughed at the promise (Genesis 18:12), then laughed with joy when it came (Genesis 21:6). Abraham carried the name father of many for 25 years with no son.
+cross: Genesis 17:5; Genesis 18:12; Genesis 21:6
+check: no
+:::
+
+:::word
+word: time appointed
+verse: Genesis 18:14
+language: Hebrew
+original: mowed
+strongs: H4150
+meaning: An appointed time, a set meeting. Also used for the feasts.
+changes: Same word as "appointed time" in Habakkuk 2:3. God's delays run on an appointment calendar. Isaac came "at the set time" (Genesis 21:2), the same word again.
+cross: Habakkuk 2:3; Genesis 21:2
+check: no
+:::
+
+:::word
+word: too hard
+verse: Genesis 18:14
+language: Hebrew
+original: pala, pele
+strongs: H6381, H6382
+meaning: To be wonderful, extraordinary, beyond what's possible.
+changes: Same family as "Wonderful" in Isaiah 9:6, a name of the Messiah. "Is any thing too wonderful for the LORD?" The answer to that question is a Person.
+cross: Isaiah 9:6; Jeremiah 32:17
+check: no
+:::
+
 **Hannah (1 Samuel 1)**
 
 > And she was in bitterness of soul, and prayed unto the LORD, and wept sore.
 > [1 Samuel 1:10]
 
+:::word
+word: Hannah
+verse: 1 Samuel 1:10
+language: Hebrew
+original: Channah
+strongs: H2584
+meaning: "Grace," "favoured."
+changes: The woman weeping in bitterness for years carried the name grace the whole time. Her circumstances said barren. Her name said favoured.
+cross: 1 Samuel 2:21
+check: no
+:::
+
 > For this child I prayed; and the LORD hath given me my petition which I asked of him.
 > [1 Samuel 1:27]
+
+:::word
+word: Samuel
+verse: 1 Samuel 1:20
+language: Hebrew
+original: Shmuw'el
+strongs: H8050
+meaning: Strong's gives "heard of God." Some scholars read it "name of God."
+changes: Hannah named her answer heard of God. The whole study in one name: heard, even when the answer took years.
+cross: 1 Samuel 1:20; Daniel 10:12
+check: no
+:::
 
 **Zacharias and Elisabeth (Luke 1)**
 
@@ -494,12 +950,51 @@ Abram was seventy and five years old when he left Haran. Abraham was an hundred 
 > Fear not, Zacharias: for thy prayer is heard; and thy wife Elisabeth shall bear thee a son, and thou shalt call his name John.
 > [Luke 1:13]
 
+:::word
+word: Zacharias, Elisabeth, John
+verse: Luke 1:13
+language: Greek
+original: Zacharias, Elisabet, Ioannes
+strongs: G2197, G1665, G2491
+meaning: "Jehovah remembers," "God of the oath," "Jehovah is gracious."
+changes: Read the three names together: God remembered his oath, and was gracious. Zacharias sings it himself: "to remember his holy covenant; The oath which he sware" (Luke 1:72-73).
+cross: Luke 1:72-73; Exodus 2:24
+check: no
+:::
+
 Same words as Daniel: "Fear not... thy prayer is heard." A prayer prayed years earlier, still on record.
 
 **The man at the pool of Bethesda (John 5:1-9)**
 
-> And a certain man was there, which had an infirmity thirty and eight years.
+> Now there is at Jerusalem by the sheep market a pool, which is called in the Hebrew tongue Bethesda, having five porches.
+> [John 5:2]
+
+:::word
+word: Bethesda
+verse: John 5:2
+language: Greek
+original: Bethesda
+strongs: G964
+meaning: From the Aramaic for "house of mercy" (some read it "house of flowing water"). A pool near the sheep market in Jerusalem, whose waters were believed to heal.
+changes: A man lay 38 years at the house of mercy, waiting on the water to move. And yet mercy didn't come through the pool. It came walking up to him in person. Jesus never sent him into the water. He just said "Rise."
+cross: John 5:7-8; Psalm 103:8
+check: no
+:::
+
+> And a certain man was there, which had an infirmity thirty and eight years. When Jesus saw him lie, and knew that he had been now a long time in that case, he saith unto him, Wilt thou be made whole?
 > [John 5:5-6]
+
+:::word
+word: infirmity
+verse: John 5:5
+language: Greek
+original: astheneia
+strongs: G769
+meaning: Weakness, sickness.
+changes: Same Greek word as "weakness" in 2 Corinthians 12:9: "my strength is made perfect in weakness." The man at Bethesda and Paul share one word. One was healed, one was given grace, and both met Christ's strength.
+cross: 2 Corinthians 12:9
+check: no
+:::
 
 > Jesus saith unto him, Rise, take up thy bed, and walk.
 > [John 5:8]
@@ -516,8 +1011,32 @@ Same words as Daniel: "Fear not... thy prayer is heard." A prayer prayed years e
 > How long wilt thou forget me, O LORD? for ever? how long wilt thou hide thy face from me?
 > [Psalm 13:1]
 
-> I waited patiently for the LORD; and he inclined unto me, and heard my cry.
+> I waited patiently for the LORD; and he inclined unto me, and heard my cry. He brought me up also out of an horrible pit, out of the miry clay, and set my feet upon a rock, and established my goings.
 > [Psalm 40:1-2]
+
+:::word
+word: David
+verse: Psalm 40:1
+language: Hebrew
+original: Daviyd
+strongs: H1732
+meaning: "Beloved."
+changes: The man waiting in the horrible pit was still the beloved. Being in the pit never changed his name.
+cross: Daniel 10:11
+check: no
+:::
+
+:::word
+word: horrible pit
+verse: Psalm 40:2
+language: Hebrew
+original: bowr, sha'own
+strongs: H953, H7588
+meaning: A pit of noise, uproar, roaring.
+changes: Not just a deep hole. A pit full of noise, roaring like rushing water. David waited in the noise, and God "set my feet upon a rock."
+cross: Psalm 40:2
+check: yes
+:::
 
 :::word
 word: waited patiently
@@ -534,8 +1053,32 @@ check: no
 > O LORD, how long shall I cry, and thou wilt not hear!
 > [Habakkuk 1:2]
 
+:::word
+word: Habakkuk
+verse: Habakkuk 1:1
+language: Hebrew
+original: Chabaqquwq
+strongs: H2265
+meaning: "Embrace."
+changes: The prophet who argued with God, "how long," is named embrace. He wrestled with God and held on at the same time.
+cross: Habakkuk 3:17-18
+check: no
+:::
+
 > For the vision is yet for an appointed time, but at the end it shall speak, and not lie: though it tarry, wait for it; because it will surely come, it will not tarry.
 > [Habakkuk 2:3]
+
+:::word
+word: speak
+verse: Habakkuk 2:3
+language: Hebrew
+original: puwach
+strongs: H6315
+meaning: To puff, breathe. Here, to pant or hasten toward.
+changes: "At the end it shall speak" pictures the vision panting toward the finish like a runner. It isn't sitting still while you wait. It's on its way.
+cross: Habakkuk 2:2
+check: yes
+:::
 
 :::word
 word: tarry
@@ -555,6 +1098,30 @@ check: yes
 
 > And lest I should be exalted above measure through the abundance of the revelations, there was given to me a thorn in the flesh, the messenger of Satan to buffet me, lest I should be exalted above measure. For this thing I besought the Lord thrice, that it might depart from me. And he said unto me, My grace is sufficient for thee: for my strength is made perfect in weakness.
 > [2 Corinthians 12:7-9]
+
+:::word
+word: Paul
+verse: 2 Corinthians 12:9
+language: Greek
+original: Paulos
+strongs: G3972
+meaning: "Small, little."
+changes: The man told "my strength is made perfect in weakness" was named Small.
+cross: 1 Corinthians 15:9
+check: no
+:::
+
+:::word
+word: thorn
+verse: 2 Corinthians 12:7
+language: Greek
+original: skolops
+strongs: G4647
+meaning: A sharp stake, a pointed shaft.
+changes: Not a small prickle. A stake driven in. Paul describes something that pinned him down, and yet grace held him up.
+cross: 2 Corinthians 12:9
+check: no
+:::
 
 :::word
 word: messenger
@@ -584,10 +1151,10 @@ check: no
 word: made perfect
 verse: 2 Corinthians 12:9
 language: Greek
-original: teleo
-strongs: G5055
-meaning: To finish, complete, bring to its goal.
-changes: It's the word in "It is finished" (John 19:30). God's strength does its finished work in our weakness.
+original: teleioo
+strongs: G5048
+meaning: To bring to completion, finish, make perfect.
+changes: It comes from the same family as the word in "It is finished" (John 19:30). God's strength reaches its full, finished work in our weakness.
 cross: John 19:30
 check: no
 :::
@@ -612,8 +1179,20 @@ Point: The cry is raised in chapter 6 and answered in chapter 19. Nothing prayed
 
 **The cry (fifth seal):**
 
-> And when he had opened the fifth seal, I saw under the altar the souls of them that were slain for the word of God, and for the testimony which they held: And they cried with a loud voice, saying, How long, O Lord, holy and true, dost thou not judge and avenge our blood on them that dwell on the earth?
+> And when he had opened the fifth seal, I saw under the altar the souls of them that were slain for the word of God, and for the testimony which they held: And they cried with a loud voice, saying, How long, O Lord, holy and true, dost thou not judge and avenge our blood on them that dwell on the earth? And white robes were given unto every one of them; and it was said unto them, that they should rest yet for a little season, until their fellowservants also and their brethren, that should be killed as they were, should be fulfilled.
 > [Revelation 6:9-11]
+
+:::word
+word: rest
+verse: Revelation 6:11
+language: Greek
+original: anapauo
+strongs: G373
+meaning: To rest, refresh, cease from labour.
+changes: Same word as "I will give you rest" (Matthew 11:28). The martyrs' answer to "how long" wasn't silence. It was the rest Jesus promised.
+cross: Matthew 11:28; Revelation 14:13
+check: no
+:::
 
 :::word
 word: avenge
@@ -629,12 +1208,12 @@ check: no
 
 **The prayers rise:**
 
-> And another angel came and stood at the altar, having a golden censer; and there was given unto him much incense, that he should offer it with the prayers of all saints upon the golden altar which was before the throne.
+> And another angel came and stood at the altar, having a golden censer; and there was given unto him much incense, that he should offer it with the prayers of all saints upon the golden altar which was before the throne. And the smoke of the incense, which came with the prayers of the saints, ascended up before God out of the angel's hand. And the angel took the censer, and filled it with fire of the altar, and cast it into the earth: and there were voices, and thunderings, and lightnings, and an earthquake.
 > [Revelation 8:3-5]
 
 **God answers:**
 
-> Thou art righteous, O Lord, which art, and wast, and shalt be, because thou hast judged thus.
+> Thou art righteous, O Lord, which art, and wast, and shalt be, because thou hast judged thus. For they have shed the blood of saints and prophets, and thou hast given them blood to drink; for they are worthy.
 > [Revelation 16:5-6]
 
 > For true and righteous are his judgments: for he hath judged the great whore, which did corrupt the earth with her fornication, and hath avenged the blood of his servants at her hand.
