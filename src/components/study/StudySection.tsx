@@ -114,6 +114,46 @@ function TiptapRenderer({ node }: { node: TiptapNode }) {
       )
     case 'hardBreak':
       return <br />
+    case 'table':
+      return (
+        <div className="overflow-x-auto my-6">
+          <table className="min-w-full border-collapse border border-scripture-border">
+            <tbody>{children}</tbody>
+          </table>
+        </div>
+      )
+    case 'tableRow':
+      return <tr className="border-b border-scripture-border">{children}</tr>
+    case 'tableHeader': {
+      const headerContent = node.content?.map((child, index) => {
+        if (child.type === 'paragraph' && child.content) {
+          return child.content.map((innerChild, innerIndex) => (
+            <TiptapRenderer key={`${index}-${innerIndex}`} node={innerChild} />
+          ))
+        }
+        return <TiptapRenderer key={index} node={child} />
+      })
+      return (
+        <th className="bg-muted px-4 py-2 text-left font-semibold border border-scripture-border">
+          {headerContent}
+        </th>
+      )
+    }
+    case 'tableCell': {
+      const cellContent = node.content?.map((child, index) => {
+        if (child.type === 'paragraph' && child.content) {
+          return child.content.map((innerChild, innerIndex) => (
+            <TiptapRenderer key={`${index}-${innerIndex}`} node={innerChild} />
+          ))
+        }
+        return <TiptapRenderer key={index} node={child} />
+      })
+      return (
+        <td className="px-4 py-2 border border-scripture-border">
+          {cellContent}
+        </td>
+      )
+    }
     default:
       return <>{children}</>
   }
