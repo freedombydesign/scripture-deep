@@ -225,6 +225,35 @@ export type Database = {
           updated_at?: string
         }
       }
+      verse_reviews: {
+        Row: {
+          id: string
+          study_id: string
+          verse_reference: string
+          reviewed: boolean
+          reviewed_by: string | null
+          reviewed_at: string | null
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          study_id: string
+          verse_reference: string
+          reviewed?: boolean
+          reviewed_by?: string | null
+          reviewed_at?: string | null
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          study_id?: string
+          verse_reference?: string
+          reviewed?: boolean
+          reviewed_by?: string | null
+          reviewed_at?: string | null
+          created_at?: string
+        }
+      }
     }
     Views: {
       [_ in never]: never
@@ -252,3 +281,4 @@ export type Section = Tables<'sections'>
 export type Note = Tables<'notes'>
 export type Verse = Tables<'verses'>
 export type WordStudy = Tables<'word_studies'>
+export type VerseReview = Tables<'verse_reviews'>

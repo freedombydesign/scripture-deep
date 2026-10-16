@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/client'
 import { RichTextEditor } from '@/components/editor/RichTextEditor'
+import { VerseChecklist } from '@/components/teacher/VerseChecklist'
 import type { Study, Section, Json } from '@/types/database'
 
 interface SectionState {
@@ -407,6 +408,19 @@ export function EditStudyClient({ studyId }: EditStudyClientProps) {
             </div>
           )}
         </section>
+
+        {/* Verse Checklist */}
+        {sections.length > 0 && (
+          <section className="mt-12">
+            <h2 className="text-xl font-semibold mb-4">Review Checklist</h2>
+            <VerseChecklist
+              studyId={studyId}
+              sections={sections.map(s => ({
+                body: typeof s.body === 'string' ? JSON.parse(s.body) : s.body
+              }))}
+            />
+          </section>
+        )}
       </main>
     </div>
   )
