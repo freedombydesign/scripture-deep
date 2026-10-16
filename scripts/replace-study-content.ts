@@ -20,6 +20,57 @@ if (!SUPABASE_URL || !SUPABASE_KEY) {
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY)
 
+// Parse inline markdown (bold, italic) into Tiptap text nodes
+function parseInlineMarkdown(text: string): any[] {
+  const nodes: any[] = []
+  let remaining = text
+
+  // Regex to find **bold** or *italic* patterns
+  const boldRegex = /\*\*(.+?)\*\*/g
+  let lastIndex = 0
+  let match
+
+  // First pass: handle **bold**
+  const tempText = text
+  const parts: Array<{text: string, bold?: boolean}> = []
+  let cursor = 0
+
+  const boldMatches = [...tempText.matchAll(/\*\*(.+?)\*\*/g)]
+
+  if (boldMatches.length === 0) {
+    // No bold, return simple text node
+    return [{ type: 'text', text }]
+  }
+
+  for (const match of boldMatches) {
+    // Add text before the match
+    if (match.index! > cursor) {
+      parts.push({ text: tempText.slice(cursor, match.index) })
+    }
+    // Add bold text
+    parts.push({ text: match[1], bold: true })
+    cursor = match.index! + match[0].length
+  }
+
+  // Add remaining text after last match
+  if (cursor < tempText.length) {
+    parts.push({ text: tempText.slice(cursor) })
+  }
+
+  // Convert parts to Tiptap nodes
+  for (const part of parts) {
+    if (part.text) {
+      const node: any = { type: 'text', text: part.text }
+      if (part.bold) {
+        node.marks = [{ type: 'bold' }]
+      }
+      nodes.push(node)
+    }
+  }
+
+  return nodes
+}
+
 // Convert markdown to Tiptap JSON
 function markdownToTiptap(markdown: string): object {
   const lines = markdown.split('\n')
@@ -42,11 +93,12 @@ function markdownToTiptap(markdown: string): object {
         quoteLines.push(lines[i].substring(2))
         i++
       }
+      const quoteText = quoteLines.join(' ')
       content.push({
         type: 'blockquote',
         content: [{
           type: 'paragraph',
-          content: [{ type: 'text', text: quoteLines.join(' ') }]
+          content: parseInlineMarkdown(quoteText)
         }]
       })
       continue
@@ -78,14 +130,14 @@ function markdownToTiptap(markdown: string): object {
               type: 'tableRow',
               content: headerRow.map(cell => ({
                 type: 'tableHeader',
-                content: [{ type: 'paragraph', content: [{ type: 'text', text: cell }] }]
+                content: [{ type: 'paragraph', content: parseInlineMarkdown(cell) }]
               }))
             },
             ...dataRows.map(row => ({
               type: 'tableRow',
               content: row.map(cell => ({
                 type: 'tableCell',
-                content: [{ type: 'paragraph', content: [{ type: 'text', text: cell }] }]
+                content: [{ type: 'paragraph', content: parseInlineMarkdown(cell) }]
               }))
             }))
           ]
@@ -99,14 +151,14 @@ function markdownToTiptap(markdown: string): object {
       content.push({
         type: 'heading',
         attrs: { level: 3 },
-        content: [{ type: 'text', text: line.substring(4) }]
+        content: parseInlineMarkdown(line.substring(4))
       })
       i++
       continue
     }
 
-    // Bold paragraph (**text**)
-    if (line.startsWith('**') && line.endsWith('**')) {
+    // Bold paragraph (**text**) - entire line is bold
+    if (line.startsWith('**') && line.endsWith('**') && line.indexOf('**', 2) === line.length - 2) {
       content.push({
         type: 'paragraph',
         content: [{
@@ -119,7 +171,7 @@ function markdownToTiptap(markdown: string): object {
       continue
     }
 
-    // List item
+    // List item (bullet)
     if (line.startsWith('- ')) {
       const listItems: string[] = []
       while (i < lines.length && lines[i].startsWith('- ')) {
@@ -130,7 +182,7 @@ function markdownToTiptap(markdown: string): object {
         type: 'bulletList',
         content: listItems.map(item => ({
           type: 'listItem',
-          content: [{ type: 'paragraph', content: [{ type: 'text', text: item }] }]
+          content: [{ type: 'paragraph', content: parseInlineMarkdown(item) }]
         }))
       })
       continue
@@ -147,16 +199,16 @@ function markdownToTiptap(markdown: string): object {
         type: 'orderedList',
         content: listItems.map(item => ({
           type: 'listItem',
-          content: [{ type: 'paragraph', content: [{ type: 'text', text: item }] }]
+          content: [{ type: 'paragraph', content: parseInlineMarkdown(item) }]
         }))
       })
       continue
     }
 
-    // Regular paragraph
+    // Regular paragraph - parse inline markdown
     content.push({
       type: 'paragraph',
-      content: [{ type: 'text', text: line }]
+      content: parseInlineMarkdown(line)
     })
     i++
   }
@@ -248,6 +300,8 @@ async function replaceStudyContent() {
   // Insert new sections
   for (let i = 0; i < parsedSections.length; i++) {
     const section = parsedSections[i]
+    // Remove the number prefix from heading (e.g., "1. The Question" -> "The Question")
+    const cleanHeading = section.heading.replace(/^\d+\.\s*/, '')
     const tiptapBody = markdownToTiptap(section.body)
 
     const { error: insertError } = await supabase
@@ -255,16 +309,16 @@ async function replaceStudyContent() {
       .insert({
         study_id: study.id,
         position: i + 1,
-        heading: section.heading,
+        heading: cleanHeading,
         body: tiptapBody,
         reflection_questions: section.reflectionQuestions || null,
         released: true
       })
 
     if (insertError) {
-      console.error(`Error inserting section "${section.heading}":`, insertError.message)
+      console.error(`Error inserting section "${cleanHeading}":`, insertError.message)
     } else {
-      console.log(`  ✓ ${i + 1}. ${section.heading}`)
+      console.log(`  ✓ ${i + 1}. ${cleanHeading}`)
     }
   }
 
