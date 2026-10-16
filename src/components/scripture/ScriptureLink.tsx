@@ -14,6 +14,7 @@ export function ScriptureLink({ text, refs }: ScriptureLinkProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [verseText, setVerseText] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
+  const [popoverPosition, setPopoverPosition] = useState<{ top: number; left: number } | null>(null)
   const popoverRef = useRef<HTMLDivElement>(null)
   const linkRef = useRef<HTMLButtonElement>(null)
 
@@ -61,7 +62,7 @@ export function ScriptureLink({ text, refs }: ScriptureLinkProps) {
     }
   }, [isOpen])
 
-  // Close on Escape key
+  // Close on Escape key or scroll
   useEffect(() => {
     function handleEscape(event: KeyboardEvent) {
       if (event.key === 'Escape') {
@@ -69,17 +70,55 @@ export function ScriptureLink({ text, refs }: ScriptureLinkProps) {
       }
     }
 
+    function handleScroll() {
+      setIsOpen(false)
+    }
+
     if (isOpen) {
       document.addEventListener('keydown', handleEscape)
-      return () => document.removeEventListener('keydown', handleEscape)
+      window.addEventListener('scroll', handleScroll, true)
+      return () => {
+        document.removeEventListener('keydown', handleEscape)
+        window.removeEventListener('scroll', handleScroll, true)
+      }
     }
   }, [isOpen])
+
+  // Calculate popover position on desktop
+  const handleClick = () => {
+    if (!isOpen && linkRef.current) {
+      const rect = linkRef.current.getBoundingClientRect()
+      const popoverWidth = 320 // w-80 = 20rem = 320px
+      const viewportWidth = window.innerWidth
+
+      // Position below the link, centered if possible
+      let left = rect.left + (rect.width / 2) - (popoverWidth / 2)
+
+      // Ensure it doesn't overflow right
+      if (left + popoverWidth > viewportWidth - 16) {
+        left = viewportWidth - popoverWidth - 16
+      }
+      // Ensure it doesn't overflow left
+      if (left < 16) {
+        left = 16
+      }
+
+      setPopoverPosition({
+        top: rect.bottom + 8,
+        left: left
+      })
+    }
+    setIsOpen(!isOpen)
+  }
+
+  // Check if we're on mobile (used for conditional styling)
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 640
 
   return (
     <span className="relative inline">
       <button
         ref={linkRef}
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={handleClick}
         className="scripture-ref"
         aria-expanded={isOpen}
         aria-haspopup="dialog"
@@ -92,7 +131,12 @@ export function ScriptureLink({ text, refs }: ScriptureLinkProps) {
           ref={popoverRef}
           role="dialog"
           aria-label={`${formatVerseRef(primaryRef)} verse text`}
-          className="verse-popover fixed sm:absolute z-50 inset-x-4 sm:inset-x-auto sm:left-0 bottom-4 sm:bottom-auto sm:top-full sm:mt-2 w-auto sm:w-80 max-h-[70vh] sm:max-h-none overflow-y-auto p-4 animate-in fade-in slide-in-from-bottom-2 sm:slide-in-from-top-2 duration-200"
+          className="verse-popover fixed z-50 w-80 max-w-[calc(100vw-2rem)] max-h-[70vh] overflow-y-auto p-4 animate-in fade-in slide-in-from-top-2 duration-200"
+          style={
+            popoverPosition && !isMobile
+              ? { top: popoverPosition.top, left: popoverPosition.left }
+              : { bottom: 16, left: 16, right: 16, width: 'auto' }
+          }
         >
           {/* Reference header */}
           <div className="font-semibold text-sm mb-2 text-primary">
