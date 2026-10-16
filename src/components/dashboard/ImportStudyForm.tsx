@@ -127,10 +127,14 @@ export function ImportStudyForm({ userId }: ImportStudyFormProps) {
 
         // Insert word studies
         for (const ws of section.wordStudies) {
-          const strongsArray = ws.strongs.map(num => ({
-            number: num,
-            blb_url: `https://www.blueletterbible.org/lexicon/${num.toLowerCase()}/kjv/wlc/0-1/`
-          }))
+          const strongsArray = ws.strongs.map(num => {
+            // Hebrew uses wlc (Westminster Leningrad Codex), Greek uses tr (Textus Receptus)
+            const textType = num.startsWith('H') ? 'wlc' : 'tr'
+            return {
+              number: num,
+              blb_url: `https://www.blueletterbible.org/lexicon/${num.toLowerCase()}/kjv/${textType}/0-1/`
+            }
+          })
 
           const wordStudyInsert = {
             study_id: studyId,
