@@ -52,6 +52,18 @@ cross: Leviticus 16:29
 check: no
 :::
 
+:::word
+word: heard
+verse: Daniel 10:12
+language: Hebrew
+original: shama
+strongs: H8085
+meaning: To hear, listen, obey. More than passive reception—it means to hear with attention and respond.
+changes: Heaven didn't just receive Daniel's prayer; it responded immediately. "Thy words were heard" means the prayer reached God and moved Him to act on day one. The delay wasn't God being slow to hear.
+cross: 1 John 5:14-15; Psalm 34:17
+check: no
+:::
+
 > And said, O man greatly beloved, fear not: peace be unto thee, be strong, yea, be strong. And when he had spoken unto me, I was strengthened, and said, Let my lord speak; for thou hast strengthened me.
 > [Daniel 10:11]
 
@@ -375,6 +387,30 @@ Point: Satan attacks, and yet he must ask permission and stay inside the boundar
 > [Job 1:10]
 
 :::word
+word: considered
+verse: Job 1:8
+language: Hebrew
+original: suwm, leb
+strongs: H7760, H3820
+meaning: Literally, to set the heart on.
+changes: God literally asks, "Have you set your heart on my servant Job?" God brings Job up first, and He knows exactly where Satan's attention is.
+cross: Job 2:3
+check: no
+:::
+
+:::word
+word: going to and fro
+verse: Job 1:7
+language: Hebrew
+original: shuwt
+strongs: H7751
+meaning: To rove, roam, run back and forth.
+changes: Satan says he's been roaming the earth. And yet the same word describes God: "the eyes of the LORD run to and fro throughout the whole earth, to shew himself strong in the behalf of them whose heart is perfect toward him" (2 Chronicles 16:9). Satan roams looking for someone to accuse. God's eyes roam looking for someone to strengthen.
+cross: Job 2:2; 2 Chronicles 16:9; Zechariah 4:10
+check: no
+:::
+
+:::word
 word: for nought / without cause
 verse: Job 1:9
 language: Hebrew
@@ -426,6 +462,30 @@ check: no
 > [Job 1:12]
 
 :::word
+word: Chaldeans
+verse: Job 1:17
+language: Hebrew
+original: Kasdiy
+strongs: H3778
+meaning: The people of Babylon.
+changes: One of the raiding bands came from Babylon, the same kingdom behind the Lucifer passage in Isaiah 14 and the Daniel story. The enemy's kingdoms show up again and again.
+cross: Isaiah 14:4; Daniel 1:4
+check: no
+:::
+
+:::word
+word: in thy power / in thine hand
+verse: Job 1:12
+language: Hebrew
+original: yad
+strongs: H3027
+meaning: Hand. Used for power or control.
+changes: The KJV says "power" in 1:12 and "hand" in 2:6, but it's the same Hebrew word. Satan twice asks God to "put forth thine hand" (1:11; 2:5). God answers that it's in Satan's hand, with limits. Satan wanted God to do the striking. God never let Job's suffering be blamed on His own hand.
+cross: Job 1:11; Job 2:5; Job 2:6
+check: no
+:::
+
+:::word
 word: touch
 verse: Job 1:11
 language: Hebrew
@@ -445,12 +505,72 @@ original: barak
 strongs: H1288
 meaning: Literally "to bless."
 changes: In Job 1:11 and Job 2:9 the Hebrew literally says "bless God." It's a polite stand-in. The writer wouldn't put "curse God" on the page. And one verse earlier Satan says God "blessed the work of his hands" (Job 1:10), the same word. Satan wants the blessing turned into a curse.
-cross: Job 2:9; Job 1:10
+cross: Job 2:9; Job 1:10; Job 1:5
 check: no
 :::
 
 > And the LORD said unto Satan, Behold, he is in thine hand; but save his life.
 > [Job 2:6]
+
+:::word
+word: foolish women
+verse: Job 2:10
+language: Hebrew
+original: nabal
+strongs: H5036
+meaning: Foolish, senseless. Morally empty, not slow-witted.
+changes: It's the same word as the name Nabal (H5037, which BLB lists as the same as H5036): "as his name is, so is he; Nabal is his name, and folly is with him" (1 Samuel 25:25). Job isn't calling his wife stupid. He's saying her words have God left out of them.
+cross: 1 Samuel 25:25; Psalm 14:1
+check: no
+:::
+
+:::word
+word: holdeth fast / retain
+verse: Job 2:3
+language: Hebrew
+original: chazaq
+strongs: H2388
+meaning: To be strong, take hold, hold firmly.
+changes: God says Job "holdeth fast his integrity" (2:3). His wife asks, "Dost thou still retain thine integrity?" (2:9). It's the same word the angel speaks over Daniel: "be strong, yea, be strong" (Daniel 10:19). Holding on is strength.
+cross: Job 2:9; Daniel 10:19
+check: no
+:::
+
+:::word
+word: destroy
+verse: Job 2:3
+language: Hebrew
+original: bala
+strongs: H1104
+meaning: To swallow up, engulf.
+changes: Satan's goal was to swallow Job whole. Peter uses the same picture for the roaring lion, "seeking whom he may devour" (1 Peter 5:8), a Greek word that also means swallow down.
+cross: 1 Peter 5:8
+check: no
+:::
+
+:::word
+word: movedst me
+verse: Job 2:3
+language: Hebrew
+original: cuwth
+strongs: H5496
+meaning: To incite, stir up, entice.
+changes: God says Satan incited Him against Job. The same word describes Satan with David: "Satan stood up against Israel, and provoked David to number Israel" (1 Chronicles 21:1). Inciting is how he works, whether he's pushing against God's servant or pushing God's servant into sin.
+cross: 1 Chronicles 21:1
+check: no
+:::
+
+:::word
+word: save
+verse: Job 2:6
+language: Hebrew
+original: shamar
+strongs: H8104
+meaning: To guard, keep, watch over.
+changes: God didn't only say "spare his life." He said guard it. It's the same word as "The LORD shall preserve thee from all evil: he shall preserve thy soul" (Psalm 121:7). Satan had permission to touch Job's body, and God posted a guard over his life.
+cross: Psalm 121:7; Psalm 121:8
+check: no
+:::
 
 :::word
 word: sore boils
@@ -486,7 +606,7 @@ verse: Job 1:22
 language: Hebrew
 original: tiphlah
 strongs: H8604
-meaning: Folly, something unseemly or tasteless.
+meaning: Folly, something unseemly or tasteless. Literally, Job did not "give" God folly.
 changes: Job never said anything unworthy of God. He grieved, tore his robe, fell on the ground, and still wouldn't put one tasteless word in God's mouth.
 cross: Job 1:20; Job 2:10
 check: no
@@ -504,8 +624,8 @@ language: Hebrew
 original: shuwb, shbiyth
 strongs: H7725, H7622
 meaning: To turn back the captivity. A Hebrew way of saying restore what was lost.
-changes: Job was never a prisoner, and yet the Hebrew calls his loss a captivity. God didn't just replace his things. He brought him back out. And it turned "when he prayed for his friends."
-cross: Psalm 126:4
+changes: Job was never a prisoner, and yet the Hebrew calls his loss a captivity. God didn't just replace his things. He brought him back out. And it turned "when he prayed for his friends." And "turned" is the same word as "naked shall I return" in Job 1:21. Job expected to return to the dust with nothing. God returned him instead.
+cross: Psalm 126:4; Job 1:21
 check: no
 :::
 
@@ -571,9 +691,9 @@ check: no
 word: spoiled / triumphing
 verse: Colossians 2:15
 language: Greek
-original: apekduomai, thriambeuo
-strongs: G554, G2358
-meaning: To strip off, disarm. To lead in a victory parade.
+original: apekduomai, thriambeuo, deigmatizo
+strongs: G554, G2358, G1165
+meaning: To strip off, disarm. To lead in a victory parade. "Made a shew" means to make a public example of.
 changes: A Roman general paraded defeated enemies through the streets, stripped of their weapons. That's the picture: the principalities of Ephesians 6 were disarmed and paraded at the cross.
 cross: Ephesians 6:12; 2 Corinthians 2:14
 check: no
