@@ -150,42 +150,6 @@ export function VerseChecklist({ studyId, sections }: VerseChecklistProps) {
     setSaving(null)
   }, [studyId])
 
-  // Mark all as reviewed
-  const markAllReviewed = useCallback(async () => {
-    setSaving('all')
-    const supabase = createClient()
-
-    const unreviewedVerses = verses.filter(v => !v.reviewed)
-
-    // Create reviews for verses that don't have one
-    const toInsert = unreviewedVerses
-      .filter(v => !v.reviewId)
-      .map(v => ({
-        study_id: studyId,
-        verse_reference: v.reference,
-        reviewed: true,
-        reviewed_at: new Date().toISOString()
-      }))
-
-    if (toInsert.length > 0) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      await (supabase.from('verse_reviews') as any).insert(toInsert)
-    }
-
-    // Update existing reviews
-    const toUpdate = unreviewedVerses.filter(v => v.reviewId).map(v => v.reviewId!)
-    if (toUpdate.length > 0) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      await (supabase.from('verse_reviews') as any)
-        .update({ reviewed: true, reviewed_at: new Date().toISOString() })
-        .in('id', toUpdate)
-    }
-
-    // Update local state
-    setVerses(prev => prev.map(v => ({ ...v, reviewed: true })))
-    setSaving(null)
-  }, [studyId, verses])
-
   // Generate BLB URL
   const getBLBUrl = (verse: ExtractedVerse) => {
     const bookCode = getBlbCode(verse.book)
@@ -233,21 +197,10 @@ export function VerseChecklist({ studyId, sections }: VerseChecklistProps) {
       {/* Content */}
       {!collapsed && (
         <div className="p-4 border-t border-scripture-border">
-          {/* Actions */}
-          <div className="flex items-center gap-3 mb-4">
-            {reviewedCount < totalCount && (
-              <button
-                onClick={markAllReviewed}
-                disabled={saving === 'all'}
-                className="text-xs px-3 py-1.5 bg-primary text-primary-foreground rounded hover:opacity-90 transition disabled:opacity-50"
-              >
-                {saving === 'all' ? 'Marking...' : 'Mark All Reviewed'}
-              </button>
-            )}
-            <span className="text-xs text-muted-foreground">
-              Check off each verse after reviewing it on Blue Letter Bible
-            </span>
-          </div>
+          {/* Instructions */}
+          <p className="text-xs text-muted-foreground mb-4">
+            Check off each verse after reviewing it on Blue Letter Bible
+          </p>
 
           {/* Verse list */}
           <div className="space-y-1 max-h-96 overflow-y-auto">
