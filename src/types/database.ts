@@ -42,7 +42,10 @@ export type Database = {
           key_verse_ref: string | null
           theme: string | null
           status: 'draft' | 'published'
+          release_mode: 'all_open' | 'release_as_we_go'
           published_at: string | null
+          study_notes: string | null
+          reflection_questions: string[] | null
           created_at: string
           updated_at: string
         }
@@ -55,7 +58,10 @@ export type Database = {
           key_verse_ref?: string | null
           theme?: string | null
           status?: 'draft' | 'published'
+          release_mode?: 'all_open' | 'release_as_we_go'
           published_at?: string | null
+          study_notes?: string | null
+          reflection_questions?: string[] | null
           created_at?: string
           updated_at?: string
         }
@@ -68,7 +74,10 @@ export type Database = {
           key_verse_ref?: string | null
           theme?: string | null
           status?: 'draft' | 'published'
+          release_mode?: 'all_open' | 'release_as_we_go'
           published_at?: string | null
+          study_notes?: string | null
+          reflection_questions?: string[] | null
           created_at?: string
           updated_at?: string
         }
@@ -81,6 +90,7 @@ export type Database = {
           heading: string
           body: Json
           reflection_questions: string[] | null
+          released: boolean
           created_at: string
           updated_at: string
         }
@@ -91,6 +101,7 @@ export type Database = {
           heading: string
           body: Json
           reflection_questions?: string[] | null
+          released?: boolean
           created_at?: string
           updated_at?: string
         }
@@ -101,6 +112,7 @@ export type Database = {
           heading?: string
           body?: Json
           reflection_questions?: string[] | null
+          released?: boolean
           created_at?: string
           updated_at?: string
         }
@@ -157,6 +169,62 @@ export type Database = {
           text?: string
         }
       }
+      word_studies: {
+        Row: {
+          id: string
+          study_id: string
+          section_id: string | null
+          english_word: string
+          verse_reference: string
+          language: 'Hebrew' | 'Greek'
+          original_word: string[]
+          transliteration: string | null
+          strongs: { number: string; blb_url: string }[]
+          meaning: string | null
+          what_it_changes: string | null
+          cross_references: string[]
+          needs_check_on_blb: boolean
+          position: number
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          study_id: string
+          section_id?: string | null
+          english_word: string
+          verse_reference: string
+          language: 'Hebrew' | 'Greek'
+          original_word?: string[]
+          transliteration?: string | null
+          strongs?: { number: string; blb_url: string }[]
+          meaning?: string | null
+          what_it_changes?: string | null
+          cross_references?: string[]
+          needs_check_on_blb?: boolean
+          position?: number
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          study_id?: string
+          section_id?: string | null
+          english_word?: string
+          verse_reference?: string
+          language?: 'Hebrew' | 'Greek'
+          original_word?: string[]
+          transliteration?: string | null
+          strongs?: { number: string; blb_url: string }[]
+          meaning?: string | null
+          what_it_changes?: string | null
+          cross_references?: string[]
+          needs_check_on_blb?: boolean
+          position?: number
+          created_at?: string
+          updated_at?: string
+        }
+      }
     }
     Views: {
       [_ in never]: never
@@ -167,6 +235,7 @@ export type Database = {
     Enums: {
       user_role: 'teacher' | 'student'
       study_status: 'draft' | 'published'
+      release_mode: 'all_open' | 'release_as_we_go'
     }
   }
 }
@@ -182,3 +251,4 @@ export type Study = Tables<'studies'>
 export type Section = Tables<'sections'>
 export type Note = Tables<'notes'>
 export type Verse = Tables<'verses'>
+export type WordStudy = Tables<'word_studies'>

@@ -62,12 +62,41 @@ Build only this first.
 
 ## 5. Phase 2 and later (do not build in MVP)
 
+### 5.1 TOP PRIORITY: Tap Any Word for Original Language
+
+**Goal:** Tap any word in the KJV and see the Hebrew (OT) or Greek (NT) word, its Strong's number, definition, and related verses, similar to the BLB Interlinear.
+
+**Requirements:**
+- KJV text with a Strong's number tagged on every word
+- Strong's Hebrew and Greek dictionaries (James Strong, 1890, public domain)
+
+**Before building:**
+- Research sources for Strong's-tagged KJV text and confirm each license allows use in a free ministry app
+- Spot-check word tagging against BLB Interlinear on 10 verses:
+  - Genesis 1:1
+  - Psalm 23:1
+  - Isaiah 53:5
+  - Daniel 10:12
+  - Matthew 5:3
+  - John 1:1
+  - Romans 8:28
+  - Ephesians 6:12
+  - Hebrews 4:12
+  - Revelation 19:16
+- Only proceed if licenses are clear and tagging matches BLB on at least 9 of 10 test verses
+
+**Interaction with Word Studies:**
+- Teacher-written word studies (the Word Study blocks from Phase 1) always display first
+- Automatic Strong's lookup fills in for words the teacher hasn't written up
+- This creates a layered experience: deep teaching insight where Ruth has written it, basic lexicon data everywhere else
+
+### 5.2 Other Phase 2 Features
+
 - Groups: Ruth creates a group, invites by email, publishes a study to that group only
 - Shared discussion per section (comments visible to the group)
 - Teacher view: who opened, who wrote notes (counts only, never note content)
 - Study library with tags (prayer, spiritual warfare, names of Satan) and search
 - Reading plans: release one section per day
-- **In-app original language study:** Tap any word in a verse to see Hebrew (OT) or Greek (NT) root, Strong's number, definition, and other verses using that word. Requires KJV text tagged with Strong's numbers per word, plus Strong's Hebrew and Greek dictionaries (James Strong, 1890, public domain). Before building: research sources, confirm licenses allow use in free ministry app, spot-check tagging accuracy against BLB Interlinear on 10 verses (Genesis 1:1, Psalm 23:1, Isaiah 53:5, Daniel 10:12, Matthew 5:3, John 1:1, Romans 8:28, Ephesians 6:12, Hebrews 4:12, Revelation 19:16). Only proceed if licenses are clear and tagging matches BLB on at least 9 of 10 test verses.
 - Native app wrapper for iOS and Android
 - Other translations (only after checking licenses; KJV stays the default)
 

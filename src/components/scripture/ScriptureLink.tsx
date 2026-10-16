@@ -116,7 +116,7 @@ export function ScriptureLink({ text, refs }: ScriptureLinkProps) {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 px-3 py-1.5 text-sm bg-primary text-primary-foreground rounded-md hover:opacity-90 transition"
             >
-              Read + Strong's
+              Open in Blue Letter Bible
               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
               </svg>
@@ -127,7 +127,7 @@ export function ScriptureLink({ text, refs }: ScriptureLinkProps) {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 px-3 py-1.5 text-sm bg-accent text-white rounded-md hover:opacity-90 transition"
             >
-              Interlinear
+              Original language
               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
               </svg>

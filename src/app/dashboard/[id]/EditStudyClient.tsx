@@ -12,6 +12,7 @@ interface SectionState {
   heading: string
   body: string
   reflection_questions: string[] | null
+  released: boolean
 }
 
 interface EditStudyClientProps {
@@ -30,6 +31,7 @@ export function EditStudyClient({ studyId }: EditStudyClientProps) {
   const [subtitle, setSubtitle] = useState('')
   const [keyVerseRef, setKeyVerseRef] = useState('')
   const [theme, setTheme] = useState('')
+  const [releaseMode, setReleaseMode] = useState<'all_open' | 'release_as_we_go'>('all_open')
 
   // Load study and sections
   useEffect(() => {
@@ -54,6 +56,7 @@ export function EditStudyClient({ studyId }: EditStudyClientProps) {
       setSubtitle(typedStudy.subtitle || '')
       setKeyVerseRef(typedStudy.key_verse_ref || '')
       setTheme(typedStudy.theme || '')
+      setReleaseMode(typedStudy.release_mode || 'all_open')
 
       const { data: sectionsData } = await supabase
         .from('sections')
@@ -64,7 +67,8 @@ export function EditStudyClient({ studyId }: EditStudyClientProps) {
       const typedSections = (sectionsData as Section[] | null) || []
       setSections(typedSections.map(s => ({
         ...s,
-        body: typeof s.body === 'string' ? s.body : JSON.stringify(s.body)
+        body: typeof s.body === 'string' ? s.body : JSON.stringify(s.body),
+        released: s.released !== undefined ? s.released : true
       })))
       setLoading(false)
     }
@@ -92,11 +96,12 @@ export function EditStudyClient({ studyId }: EditStudyClientProps) {
         slug,
         key_verse_ref: keyVerseRef.trim() || null,
         theme: theme.trim() || null,
+        release_mode: releaseMode,
       })
       .eq('id', studyId)
 
     setSaving(false)
-  }, [study, studyId, title, subtitle, keyVerseRef, theme])
+  }, [study, studyId, title, subtitle, keyVerseRef, theme, releaseMode])
 
   // Add a new section
   const addSection = async () => {
@@ -109,6 +114,7 @@ export function EditStudyClient({ studyId }: EditStudyClientProps) {
       heading: `Section ${newPosition}`,
       body: { type: 'doc', content: [{ type: 'paragraph' }] } as Json,
       reflection_questions: [] as string[],
+      released: releaseMode === 'all_open' ? true : false,
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -125,7 +131,8 @@ export function EditStudyClient({ studyId }: EditStudyClientProps) {
     const typedData = data as Section
     setSections([...sections, {
       ...typedData,
-      body: JSON.stringify(typedData.body)
+      body: JSON.stringify(typedData.body),
+      released: typedData.released !== undefined ? typedData.released : true
     }])
   }
 
@@ -146,6 +153,7 @@ export function EditStudyClient({ studyId }: EditStudyClientProps) {
     if (updates.heading !== undefined) dbUpdates.heading = updates.heading
     if (updates.reflection_questions !== undefined) dbUpdates.reflection_questions = updates.reflection_questions
     if (bodyToSave !== undefined) dbUpdates.body = bodyToSave
+    if (updates.released !== undefined) dbUpdates.released = updates.released
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     await (supabase.from('sections') as any)
@@ -337,6 +345,29 @@ export function EditStudyClient({ studyId }: EditStudyClientProps) {
                 className="w-full px-4 py-2 border border-scripture-border rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 resize-y"
               />
             </div>
+            <div>
+              <label htmlFor="releaseMode" className="block text-sm font-medium mb-1">
+                Section Release Mode
+              </label>
+              <select
+                id="releaseMode"
+                value={releaseMode}
+                onChange={(e) => {
+                  setReleaseMode(e.target.value as 'all_open' | 'release_as_we_go')
+                  // Auto-save when release mode changes
+                  setTimeout(saveStudy, 100)
+                }}
+                className="w-full px-4 py-2 border border-scripture-border rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-primary/50"
+              >
+                <option value="all_open">All sections open</option>
+                <option value="release_as_we_go">Release as we go</option>
+              </select>
+              {releaseMode === 'release_as_we_go' && (
+                <p className="text-sm text-muted-foreground mt-1">
+                  Students will see locked sections as &quot;Coming up next session&quot; until you release them.
+                </p>
+              )}
+            </div>
           </div>
         </section>
 
@@ -368,6 +399,7 @@ export function EditStudyClient({ studyId }: EditStudyClientProps) {
                 <SectionEditor
                   key={section.id}
                   section={section}
+                  releaseMode={releaseMode}
                   onUpdate={(updates) => updateSection(section.id, updates)}
                   onDelete={() => deleteSection(section.id)}
                 />
@@ -383,10 +415,12 @@ export function EditStudyClient({ studyId }: EditStudyClientProps) {
 // Section editor component
 function SectionEditor({
   section,
+  releaseMode,
   onUpdate,
   onDelete,
 }: {
   section: SectionState
+  releaseMode: 'all_open' | 'release_as_we_go'
   onUpdate: (updates: Partial<SectionState>) => void
   onDelete: () => void
 }) {
@@ -396,7 +430,7 @@ function SectionEditor({
   )
 
   return (
-    <div className="border border-scripture-border rounded-lg overflow-hidden">
+    <div className={`border rounded-lg overflow-hidden ${section.released ? 'border-scripture-border' : 'border-yellow-500/50'}`}>
       <div className="flex items-center justify-between p-4 bg-muted border-b border-scripture-border">
         <div className="flex items-center gap-3">
           <span className="text-lg font-semibold text-primary">
@@ -410,13 +444,32 @@ function SectionEditor({
             className="text-lg font-semibold bg-transparent border-none focus:outline-none focus:ring-0"
             placeholder="Section heading"
           />
+          {releaseMode === 'release_as_we_go' && !section.released && (
+            <span className="text-xs px-2 py-0.5 bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300 rounded">
+              Locked
+            </span>
+          )}
         </div>
-        <button
-          onClick={onDelete}
-          className="text-sm text-red-500 hover:text-red-700"
-        >
-          Delete
-        </button>
+        <div className="flex items-center gap-3">
+          {releaseMode === 'release_as_we_go' && (
+            <button
+              onClick={() => onUpdate({ released: !section.released })}
+              className={`text-sm px-3 py-1 rounded transition ${
+                section.released
+                  ? 'bg-green-100 text-green-800 hover:bg-green-200 dark:bg-green-900/30 dark:text-green-300'
+                  : 'bg-yellow-100 text-yellow-800 hover:bg-yellow-200 dark:bg-yellow-900/30 dark:text-yellow-300'
+              }`}
+            >
+              {section.released ? 'Released' : 'Release'}
+            </button>
+          )}
+          <button
+            onClick={onDelete}
+            className="text-sm text-red-500 hover:text-red-700"
+          >
+            Delete
+          </button>
+        </div>
       </div>
 
       <div className="p-4">

@@ -41,10 +41,10 @@ export default async function StudyPage({ params }: StudyPageProps) {
   const supabase = await createClient()
 
   // Fetch the study
-  type StudyData = Pick<Study, 'id' | 'title' | 'subtitle' | 'key_verse_ref' | 'theme' | 'author_id' | 'published_at'>
+  type StudyData = Pick<Study, 'id' | 'title' | 'subtitle' | 'key_verse_ref' | 'theme' | 'author_id' | 'published_at' | 'release_mode'>
   const { data: studyData, error: studyError } = await supabase
     .from('studies')
-    .select('id, title, subtitle, key_verse_ref, theme, author_id, published_at')
+    .select('id, title, subtitle, key_verse_ref, theme, author_id, published_at, release_mode')
     .eq('slug', slug)
     .eq('status', 'published')
     .single()
@@ -56,10 +56,10 @@ export default async function StudyPage({ params }: StudyPageProps) {
   }
 
   // Fetch sections ordered by position
-  type SectionData = Pick<Section, 'id' | 'position' | 'heading' | 'body' | 'reflection_questions'>
+  type SectionData = Pick<Section, 'id' | 'position' | 'heading' | 'body' | 'reflection_questions' | 'released'>
   const { data: sectionsData, error: sectionsError } = await supabase
     .from('sections')
-    .select('id, position, heading, body, reflection_questions')
+    .select('id, position, heading, body, reflection_questions, released')
     .eq('study_id', study.id)
     .order('position')
 
@@ -102,14 +102,25 @@ export default async function StudyPage({ params }: StudyPageProps) {
           >
             &larr; Scripture Deep
           </Link>
-          {user && (
+          <div className="flex items-center gap-4">
             <Link
-              href="/notes"
-              className="text-sm text-muted-foreground hover:text-accent transition"
+              href={`/study/${slug}/share`}
+              className="text-sm text-muted-foreground hover:text-accent transition flex items-center gap-1"
             >
-              My Notes
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+              </svg>
+              Share
             </Link>
-          )}
+            {user && (
+              <Link
+                href="/notes"
+                className="text-sm text-muted-foreground hover:text-accent transition"
+              >
+                My Notes
+              </Link>
+            )}
+          </div>
         </div>
       </header>
 
@@ -179,6 +190,8 @@ export default async function StudyPage({ params }: StudyPageProps) {
               position={section.position}
               userId={user?.id || null}
               isTeacher={isTeacher}
+              released={section.released !== undefined ? section.released : true}
+              releaseMode={study.release_mode || 'all_open'}
             />
           ))}
         </div>

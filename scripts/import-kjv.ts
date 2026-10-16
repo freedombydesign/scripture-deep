@@ -69,13 +69,14 @@ async function fetchBook(bookName: string): Promise<VerseData[]> {
   const data = await response.json()
   const verses: VerseData[] = []
 
-  // The JSON format is: { chapters: [ { chapter: 1, verses: [ { verse: 1, text: "..." } ] } ] }
+  // The JSON format is: { chapters: [ { chapter: "1", verses: [ { verse: "1", text: "..." } ] } ] }
+  // Note: chapter and verse numbers are strings in the JSON, need to parse to int
   for (const chapter of data.chapters) {
     for (const verse of chapter.verses) {
       verses.push({
         book: bookName.toLowerCase(),
-        chapter: chapter.chapter,
-        verse: verse.verse,
+        chapter: parseInt(chapter.chapter, 10),
+        verse: parseInt(verse.verse, 10),
         text: verse.text,
       })
     }
