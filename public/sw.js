@@ -1,11 +1,14 @@
 // Service Worker for Scripture Deep PWA
-const CACHE_NAME = 'scripture-deep-v2'
+const CACHE_NAME = 'scripture-deep-v3'
 const OFFLINE_URL = '/'
 
 // Assets to cache on install
 const PRECACHE_ASSETS = [
   '/',
   '/manifest.json',
+  '/favicon.ico',
+  '/favicon.svg',
+  '/apple-touch-icon.png',
   '/icons/icon-192x192.png',
   '/icons/icon-512x512.png',
 ]

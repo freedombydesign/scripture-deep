@@ -26,6 +26,13 @@ export const metadata: Metadata = {
   description: "Topical Bible studies with linked scripture and personal notes",
   manifest: "/manifest.json",
   themeColor: "#c9a227",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "48x48" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+    apple: "/apple-touch-icon.png",
+  },
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
