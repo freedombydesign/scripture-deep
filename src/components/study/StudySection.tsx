@@ -95,7 +95,17 @@ function TiptapRenderer({ node }: { node: TiptapNode }) {
     case 'orderedList':
       return <ol className="list-decimal list-inside mb-4 space-y-1">{children}</ol>
     case 'listItem':
-      return <li>{children}</li>
+      // Extract text directly from paragraph children to avoid block-level wrapping
+      const listContent = node.content?.map((child, index) => {
+        if (child.type === 'paragraph' && child.content) {
+          // Render paragraph contents inline, not as block
+          return child.content.map((innerChild, innerIndex) => (
+            <TiptapRenderer key={`${index}-${innerIndex}`} node={innerChild} />
+          ))
+        }
+        return <TiptapRenderer key={index} node={child} />
+      })
+      return <li>{listContent}</li>
     case 'blockquote':
       return (
         <blockquote className="scripture-text border-l-4 border-primary bg-scripture-bg pl-4 py-2 my-4 rounded-r">
