@@ -4,6 +4,7 @@ import { SectionJumpBar } from '@/components/study/SectionJumpBar'
 import { StudySectionWithNotes } from '@/components/study/StudySectionWithNotes'
 import { LinkedText } from '@/components/scripture'
 import Link from 'next/link'
+import { RefreshButton } from '@/components/ui/RefreshButton'
 import type { Study, Section, User } from '@/types/database'
 
 // This page uses auth and params which are runtime-only
@@ -103,6 +104,7 @@ export default async function StudyPage({ params }: StudyPageProps) {
             &larr; Scripture Deep
           </Link>
           <div className="flex items-center gap-4">
+            <RefreshButton />
             <Link
               href={`/study/${slug}/share`}
               className="text-sm text-muted-foreground hover:text-accent transition flex items-center gap-1"

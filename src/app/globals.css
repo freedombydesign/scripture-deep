@@ -283,7 +283,32 @@ body {
 }
 
 .prose-study li {
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose-study table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 1rem;
+}
+
+.prose-study th {
+  background: var(--muted);
+  font-weight: 600;
+  text-align: left;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--scripture-border);
+}
+
+.prose-study td {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--scripture-border);
+  vertical-align: top;
+}
+
+.prose-study tr:nth-child(even) {
+  background: var(--muted);
 }
 
 /* Input styling */

@@ -91,9 +91,9 @@ function TiptapRenderer({ node }: { node: TiptapNode }) {
       return <h4 className="font-semibold mt-3 mb-2">{children}</h4>
     }
     case 'bulletList':
-      return <ul className="list-disc list-inside mb-4 space-y-1">{children}</ul>
+      return <ul className="list-disc pl-6 mb-4 space-y-2">{children}</ul>
     case 'orderedList':
-      return <ol className="list-decimal list-inside mb-4 space-y-1">{children}</ol>
+      return <ol className="list-decimal pl-6 mb-4 space-y-2">{children}</ol>
     case 'listItem':
       // Extract text directly from paragraph children to avoid block-level wrapping
       const listContent = node.content?.map((child, index) => {
@@ -178,11 +178,11 @@ export function StudySection({
       </div>
 
       {reflectionQuestions && reflectionQuestions.length > 0 && (
-        <div className="mt-6 p-4 bg-muted rounded-lg">
-          <h3 className="font-semibold mb-3">Reflection Questions</h3>
-          <ol className="list-decimal list-inside space-y-2">
+        <div className="mt-8 p-6 bg-muted rounded-xl">
+          <h3 className="font-semibold mb-4 text-lg">Reflection Questions</h3>
+          <ol className="list-decimal pl-6 space-y-3">
             {reflectionQuestions.map((question, index) => (
-              <li key={index} className="text-foreground">
+              <li key={index} className="text-foreground pl-2">
                 <LinkedText text={question} />
               </li>
             ))}
