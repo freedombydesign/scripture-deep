@@ -5,7 +5,7 @@ import { StudySectionWithNotes } from '@/components/study/StudySectionWithNotes'
 import { LinkedText } from '@/components/scripture'
 import Link from 'next/link'
 import { RefreshButton } from '@/components/ui/RefreshButton'
-import type { Study, Section, User } from '@/types/database'
+import type { Study, Section, User, WordStudy } from '@/types/database'
 
 // This page uses auth and params which are runtime-only
 export const instant = false
@@ -69,6 +69,27 @@ export default async function StudyPage({ params }: StudyPageProps) {
   }
 
   const sections = (sectionsData as SectionData[] | null) || []
+
+  // Fetch word studies for all sections
+  const sectionIds = sections.map(s => s.id)
+  const { data: wordStudiesData } = await supabase
+    .from('word_studies')
+    .select('*')
+    .in('section_id', sectionIds.length > 0 ? sectionIds : ['none'])
+    .order('position')
+
+  const wordStudies = (wordStudiesData as WordStudy[] | null) || []
+
+  // Group word studies by section_id
+  const wordStudiesBySection: Record<string, WordStudy[]> = {}
+  for (const ws of wordStudies) {
+    if (ws.section_id) {
+      if (!wordStudiesBySection[ws.section_id]) {
+        wordStudiesBySection[ws.section_id] = []
+      }
+      wordStudiesBySection[ws.section_id].push(ws)
+    }
+  }
 
   // Fetch author name
   const { data: authorData } = await supabase
@@ -194,6 +215,7 @@ export default async function StudyPage({ params }: StudyPageProps) {
               isTeacher={isTeacher}
               released={section.released !== undefined ? section.released : true}
               releaseMode={study.release_mode || 'all_open'}
+              wordStudies={wordStudiesBySection[section.id] || []}
             />
           ))}
         </div>

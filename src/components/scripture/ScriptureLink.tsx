@@ -92,7 +92,7 @@ export function ScriptureLink({ text, refs }: ScriptureLinkProps) {
           ref={popoverRef}
           role="dialog"
           aria-label={`${formatVerseRef(primaryRef)} verse text`}
-          className="verse-popover absolute z-50 left-0 top-full mt-2 w-80 max-w-[calc(100vw-2rem)] p-4 animate-in fade-in slide-in-from-top-2 duration-200"
+          className="verse-popover fixed sm:absolute z-50 left-4 right-4 sm:left-0 sm:right-auto top-auto sm:top-full bottom-4 sm:bottom-auto sm:mt-2 w-auto sm:w-80 max-w-[calc(100vw-2rem)] p-4 animate-in fade-in slide-in-from-bottom-2 sm:slide-in-from-top-2 duration-200"
         >
           {/* Reference header */}
           <div className="font-semibold text-sm mb-2 text-primary">

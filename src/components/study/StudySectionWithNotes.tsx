@@ -3,7 +3,8 @@
 import { useState } from 'react'
 import { StudySection } from './StudySection'
 import { SectionNotes } from '@/components/notes'
-import type { Json } from '@/types/database'
+import { WordStudyCard } from '@/components/word-study/WordStudyCard'
+import type { Json, WordStudy } from '@/types/database'
 
 interface StudySectionWithNotesProps {
   id: string
@@ -15,6 +16,7 @@ interface StudySectionWithNotesProps {
   isTeacher: boolean
   released?: boolean
   releaseMode?: 'all_open' | 'release_as_we_go'
+  wordStudies?: WordStudy[]
 }
 
 export function StudySectionWithNotes({
@@ -27,6 +29,7 @@ export function StudySectionWithNotes({
   isTeacher,
   released = true,
   releaseMode = 'all_open',
+  wordStudies = [],
 }: StudySectionWithNotesProps) {
   const [readAhead, setReadAhead] = useState(false)
 
@@ -77,6 +80,24 @@ export function StudySectionWithNotes({
         reflectionQuestions={reflectionQuestions}
         position={position}
       />
+
+      {/* Word Studies */}
+      {wordStudies.length > 0 && (
+        <div className="mt-8 mb-6">
+          <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+            <svg className="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+            </svg>
+            Word Studies
+          </h3>
+          <div className="space-y-4">
+            {wordStudies.map((ws) => (
+              <WordStudyCard key={ws.id} wordStudy={ws} compact />
+            ))}
+          </div>
+        </div>
+      )}
+
       <div className="max-w-3xl">
         <SectionNotes
           sectionId={id}
