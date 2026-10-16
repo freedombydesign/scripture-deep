@@ -7,9 +7,10 @@ import type { WordStudy } from '@/types/database'
 interface WordStudyCardProps {
   wordStudy: WordStudy
   compact?: boolean
+  isTeacher?: boolean
 }
 
-export function WordStudyCard({ wordStudy, compact = false }: WordStudyCardProps) {
+export function WordStudyCard({ wordStudy, compact = false, isTeacher = false }: WordStudyCardProps) {
   const [isExpanded, setIsExpanded] = useState(!compact)
 
   return (
@@ -26,7 +27,7 @@ export function WordStudyCard({ wordStudy, compact = false }: WordStudyCardProps
           <span className="text-sm text-muted-foreground">
             {wordStudy.verse_reference}
           </span>
-          {wordStudy.needs_check_on_blb && (
+          {isTeacher && wordStudy.needs_check_on_blb && (
             <span className="text-xs px-2 py-0.5 bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300 rounded">
               Needs verification
             </span>

@@ -92,7 +92,7 @@ export function StudySectionWithNotes({
           </h3>
           <div className="space-y-4">
             {wordStudies.map((ws) => (
-              <WordStudyCard key={ws.id} wordStudy={ws} compact />
+              <WordStudyCard key={ws.id} wordStudy={ws} compact isTeacher={isTeacher} />
             ))}
           </div>
         </div>
