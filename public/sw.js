@@ -1,5 +1,5 @@
 // Service Worker for Scripture Deep PWA
-const CACHE_NAME = 'scripture-deep-v1'
+const CACHE_NAME = 'scripture-deep-v2'
 const OFFLINE_URL = '/'
 
 // Assets to cache on install

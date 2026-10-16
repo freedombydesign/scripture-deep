@@ -1,17 +1,21 @@
 'use client'
 
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
 
 export function RefreshButton() {
   const [isRefreshing, setIsRefreshing] = useState(false)
-  const router = useRouter()
 
-  const handleRefresh = () => {
+  const handleRefresh = async () => {
     setIsRefreshing(true)
-    router.refresh()
-    // Reset after a short delay
-    setTimeout(() => setIsRefreshing(false), 1000)
+
+    // Clear service worker cache and reload
+    if ('caches' in window) {
+      const cacheNames = await caches.keys()
+      await Promise.all(cacheNames.map(name => caches.delete(name)))
+    }
+
+    // Force a hard reload bypassing cache
+    window.location.reload()
   }
 
   return (
