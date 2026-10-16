@@ -232,16 +232,15 @@ export function generateBLBUrl(ref: VerseRef): string {
 }
 
 /**
- * Generate a Blue Letter Bible Interlinear URL for a verse reference
+ * Generate a Blue Letter Bible URL with Strong's numbers shown inline
  */
 export function generateBLBInterlinearUrl(ref: VerseRef): string {
-  const { book, chapter, verseStart, verseEnd } = ref
+  const { book, chapter, verseStart } = ref
   const verse = verseStart ?? 1
-  const endVerse = verseEnd ?? verse
 
-  // BLB Interlinear URL format: /tools/interlinear/tr/{book}/{chapter}/{verseStart}-{verseEnd}/
-  // Using TR (Textus Receptus) for NT, will work for OT Hebrew too
-  return `https://www.blueletterbible.org/tools/interlinear/tr/${book.blbCode}/${chapter}/${verse}-${endVerse}/`
+  // BLB URL with /s_1/ suffix shows Strong's numbers inline on the verse
+  // Each word becomes clickable to see its Strong's definition
+  return `https://www.blueletterbible.org/kjv/${book.blbCode}/${chapter}/${verse}/s_1/`
 }
 
 /**
